@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Longevity Courtyard
 
 A static, responsive website recreated from **Longevity Courtyard Website.fig.zip**. The desktop pages use the archive's component coordinates, linked styles, typography, image crops, original photographs, vector artwork, and videos. Mobile layouts reflow the desktop design into readable sections and cards.
@@ -46,3 +47,6 @@ Desktop positions and source assets are reproduced directly. Browser font render
 The static check verifies all page links and local asset references. Browser validation covers all nine pages at 1440px and 390px, image loading, horizontal overflow, navigation, menus, dialogs, and video range requests. Review screenshots are saved locally in `test-results/` (excluded from version control).
 
 Serve the root HTML files, `styles.css`, `app.js`, and `assets/` on any static host. Keep `.tools/`, `design/`, and `test-results/` private. Deployment is not configured.
+=======
+# LongevityCourtyard
+>>>>>>> a9517bfac6487e5e4ab108856a4a072117abce23
