@@ -1,0 +1,8 @@
+{
+  "name": "longevity-courtyard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Longevity Courtyard website recreated from the supplied Figma archive",
+  "scripts": { "build": "node scripts/build.cjs", "start": "node scripts/serve.cjs", "dev": "node scripts/serve.cjs", "test": "node scripts/check.cjs" },
+  "engines": { "node": ">=18" }
+}
