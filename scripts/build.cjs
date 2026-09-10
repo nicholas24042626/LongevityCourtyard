@@ -1,4 +1,12 @@
 const fs=require('fs');
+const path=require('path');
+const projectRoot=path.resolve(__dirname,'..');
+const publishDir=path.join(projectRoot,'dist');
+// Recreate only the dedicated output directory so stale files cannot be published.
+if(path.dirname(publishDir)!==projectRoot||path.basename(publishDir)!=='dist')throw new Error('Invalid publish directory');
+fs.rmSync(publishDir,{recursive:true,force:true});
+fs.mkdirSync(publishDir,{recursive:true});
+for(const file of ['styles.css','app.js','assets'])fs.cpSync(path.join(projectRoot,file),path.join(publishDir,file),{recursive:true});
 const pages=require('../src/pages.json');
 const equipment=require('../src/equipment.json');
 const equipmentLabels=['Leg Extension / Curl','Shoulder Press / Lat Pulldown','Hip Adduction / Abduction','Abdomen / Back Extension','Pulley / Functional Trainer','Recumbent Bike'];
@@ -71,5 +79,7 @@ function header(slug){return `<header class="site-header"><div class="nav-canvas
 for(const page of pages){const {root}=page;const content=root.children.map(n=>render(n,1)).join('\n');const html=`<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#002e56"><meta name="description" content="Coach-guided active ageing at Longevity Courtyard. Explore our 12-week programme, meet our team, and book a free trial session in Jurong West."><title>${page.title==='Home'?'Longevity Courtyard — Stay Strong for the Moments that Matter':page.title+' | Longevity Courtyard'}</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/fonts.css"><link rel="stylesheet" href="styles.css"><script>document.documentElement.style.setProperty('--page-scale',innerWidth>=900?innerWidth/1440:1)</script><script src="app.js" defer></script></head><body data-page="${page.slug}"><a class="skip-link" href="#main-content">Skip to content</a>${header(page.slug)}<main id="main-content" class="site-page" style="--page-height:${root.h}px" aria-label="${escape(page.title)}">${page.slug==='index'?'<h1 class="sr-only desktop-title">Stay Strong for the Moments that Matter.</h1>':`<h1 class="sr-only">${escape(page.title)}</h1>`}${content}</main><dialog id="information-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close dialog" autofocus>×</button><h2 id="dialog-title"></h2><div id="dialog-content"></div></dialog></body></html>`;
 const templates=page.slug==='resources'?equipment.map((n,i)=>`<template id="equipment-${i}">${n.children.map(c=>render(c,3)).join('')}</template>`).join(''):'';
-fs.writeFileSync(page.slug+'.html',html.replace('</body>',templates+'</body>'));}
-console.log(`Built ${pages.length} static pages.`);
+const output=html.replace('</body>',templates+'</body>');
+fs.writeFileSync(path.join(projectRoot,page.slug+'.html'),output);
+fs.writeFileSync(path.join(publishDir,page.slug+'.html'),output);}
+console.log(`Built ${pages.length} static pages in dist/ (and refreshed root pages for local preview).`);

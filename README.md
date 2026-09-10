@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Longevity Courtyard
 
 A static, responsive website recreated from **Longevity Courtyard Website.fig.zip**. The desktop pages use the archive's component coordinates, linked styles, typography, image crops, original photographs, vector artwork, and videos. Mobile layouts reflow the desktop design into readable sections and cards.
@@ -25,7 +24,7 @@ With Node.js installed, `npm start` also works. No package installation is neede
 
 ## Editing
 
-`src/pages.json` and `src/equipment.json` contain the extracted page and component layouts, text, and asset references. `scripts/build.cjs` generates the root HTML pages. `styles.css` contains responsive behavior; `app.js` contains interactions. Assets and fonts are stored locally under `assets/`.
+`src/pages.json` and `src/equipment.json` contain the extracted page and component layouts, text, and asset references. `scripts/build.cjs` generates the HTML pages in `dist/`, copies `styles.css`, `app.js`, and `assets/` into it, and refreshes the root HTML pages for local preview. Edit the root files, not the generated copies in `dist/`.
 
 ```powershell
 npm run build
@@ -46,7 +45,11 @@ Desktop positions and source assets are reproduced directly. Browser font render
 
 The static check verifies all page links and local asset references. Browser validation covers all nine pages at 1440px and 390px, image loading, horizontal overflow, navigation, menus, dialogs, and video range requests. Review screenshots are saved locally in `test-results/` (excluded from version control).
 
-Serve the root HTML files, `styles.css`, `app.js`, and `assets/` on any static host. Keep `.tools/`, `design/`, and `test-results/` private. Deployment is not configured.
-=======
-# LongevityCourtyard
->>>>>>> a9517bfac6487e5e4ab108856a4a072117abce23
+## Deployment
+
+Choose **Static Site** on your hosting platform and use:
+
+- **Build command:** `npm run build`
+- **Publish directory:** `dist`
+
+The build recreates `dist/` with only the generated HTML pages, `styles.css`, `app.js`, and `assets/`. Publish only this directory, keeping source data, tooling, design files, and test results private. `dist/` is excluded from Git because the host generates it during the build. Run `npm run build` before `npm test`; the checks validate the publish directory.
