@@ -577,3 +577,11 @@ body.is-zh[data-page="programmes"] [data-node="679:502"]::before{content:none}
  body.is-zh[data-page="programmes"] [data-node="679:502"]{color:#002e56!important;font-style:normal!important}
  body[data-page="for-anyone"] .site-footer,body[data-page="for-anyone"] .contact-section{top:auto!important}
 }
+
+/* Keep all three hip muscle tags within the homepage equipment card. */
+.brand{position:relative}
+.brand-home{display:block;width:100%;height:100%}
+/* The Tzu Chi mark occupies the rightmost part of the shared logo image. */
+.tzu-chi-link{position:absolute;left:88%;right:0;top:32%;bottom:0;z-index:1;border-radius:3px}
+body[data-page="index"] [data-node="758:1521"]{width:100%!important}
+body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!important}
