@@ -246,7 +246,7 @@ body[data-page="programmes"] [data-node="679:513"]::after{
  }
 }
 
-body[data-page="programmes"] .site-page{height:7639px!important}
+body[data-page="programmes"] .site-page{height:7539px!important}
 body[data-page="programmes"] #section-679-509{display:none}
 body[data-page="programmes"] [data-node="757:1281"]{width:1100px!important;height:80px!important;font-size:64px!important;line-height:80px!important}
 body[data-page="programmes"] [data-node="757:1282"]{width:1100px!important;height:136px!important;font-size:24px!important;line-height:34px!important}
@@ -552,4 +552,28 @@ body.is-zh nav {
 
 body.is-zh .text-node {
   white-space: normal;
+}
+
+html[lang="zh-Hans"] body{font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif}
+/* Keep translated button labels centered without changing page copy alignment. */
+.language-switch{width:auto;flex-shrink:0}
+.language-switch>button{display:flex;align-items:center;justify-content:center;line-height:1;padding:0 10px}
+body.is-zh .visit-button{display:inline-flex;align-items:center;justify-content:center;line-height:1.2;text-align:center;white-space:nowrap}
+body.is-zh .design-node:is(a,button):has(>.text-node){display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 20px}
+body.is-zh .design-node:is(a,button)>.text-node{position:static!important;left:auto!important;top:auto!important;width:auto!important;height:auto!important;margin:0;text-align:center!important;line-height:1.4!important;white-space:normal;min-width:0}
+body.is-zh .design-node:is(a,button):has(>.text-node)>.has-image{position:relative!important;left:auto!important;top:auto!important;flex-shrink:0}
+body.is-zh .approach-button{display:inline-flex;align-items:center;justify-content:center;text-align:center}
+body.is-zh .text-node{font-family:'Source Sans 3','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif!important;line-break:strict;word-break:normal;overflow-wrap:break-word;white-space:pre-line}
+body.is-zh :is(.shangri-la-approach,.anyone-process,.programme-assessment,.anyone-aspect-grid) :is(h2,h3,p){font-family:'Source Sans 3','Microsoft YaHei','PingFang SC',sans-serif!important;word-break:normal;line-break:strict}
+body.is-zh .mobile-headline{font-family:'Microsoft YaHei','PingFang SC',sans-serif}
+body.is-zh[data-page="programmes"] [data-node="679:502"]::before{content:none}
+@media(min-width:900px){
+ body.is-zh[data-page="programmes"] [data-node="757:1281"]::before{content:""}
+ body.is-zh[data-page="programmes"] [data-node="757:1281"]::after{content:"香格里拉课程"}
+ body.is-zh[data-page="programmes"] [data-node="757:1281"]{height:96px!important}
+ body.is-zh[data-page="about"] [data-node="428:307"]{width:360px!important}
+}
+@media(max-width:899px){
+ body.is-zh[data-page="programmes"] [data-node="679:502"]{color:#002e56!important;font-style:normal!important}
+ body[data-page="for-anyone"] .site-footer,body[data-page="for-anyone"] .contact-section{top:auto!important}
 }

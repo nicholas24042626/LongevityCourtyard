@@ -37,7 +37,9 @@ The included Node runtime can also run these scripts: `.\.tools\node.exe scripts
 
 The supplied archive includes alternate designs and an unpublished About frame. The site uses the prototype's selected homepage plus the other named page frames; the About frame is available from the homepage's About link. Original draft copy, including team placeholders, is retained.
 
-The archive does not supply a complete Chinese translation, legal policy text, or an official Facebook URL. These controls open explanatory dialogs with contact options; no policy or translation is presented as approved. Trial buttons open the original WhatsApp destination rather than claiming to create a booking.
+The language buttons switch between English and Simplified Chinese and remember the selection across pages. `assets/zh.js` contains complete text translations for the main content; names and equipment brands stay in English. Add translations there when changing English copy. Switching back restores the original English formatting.
+
+The archive does not supply legal policy text or an official Facebook URL. Those controls open explanatory dialogs with contact options. Trial buttons open the original WhatsApp destination rather than claiming to create a booking.
 
 Desktop positions and source assets are reproduced directly. Browser font rendering, gradient interpolation, video controls, and the added mobile layouts can differ from Figma's rendering. No pixel-perfect certification is implied.
 
