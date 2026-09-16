@@ -3,3 +3,6 @@ design/
 node_modules/
 test-results/
 dist/
+
+# Generated space-free carousel photos
+assets/carousel/

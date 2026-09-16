@@ -214,6 +214,33 @@
     const nextSection=document.querySelector(seniors?'[data-node="758:1322"]':'[data-node="811:1711"]');
     if(nextSection)nextSection.parentElement.insertBefore(process,nextSection);
   }
+  document.querySelectorAll('[data-photo-carousel]').forEach(carousel=>{
+    const photos=[...carousel.querySelectorAll('.carousel-photo')];
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+    let index=0,paused=reduced.matches,loading=false;
+    const show=async step=>{
+      if(loading)return;
+      loading=true;
+      const next=(index+step+photos.length)%photos.length;
+      try{
+        // Keep the current photo visible until the next one is ready to paint.
+        await photos[next].decode();
+        index=next;
+        photos.forEach((photo,i)=>{
+          photo.classList.toggle('is-active',i===index);
+          photo.setAttribute('aria-hidden',String(i!==index));
+        });
+      }catch{ /* Keep the current photo if the next image fails to load. */ }
+      finally{loading=false}
+    };
+    carousel.querySelectorAll('[data-photo-step]').forEach(button=>button.addEventListener('click',()=>show(Number(button.dataset.photoStep))));
+    carousel.addEventListener('keydown',event=>{
+      if(!['ArrowLeft','ArrowRight'].includes(event.key))return;
+      event.preventDefault();show(event.key==='ArrowLeft'?-1:1);
+    });
+    reduced.addEventListener('change',()=>{paused=reduced.matches});
+    setInterval(()=>{if(!paused&&!document.hidden&&!carousel.querySelector(':focus-visible'))show(1)},5000);
+  });
   const equipmentMap={'Leg Extension / Curl':0,'Shoulder Press / Lat Pulldown':4,'Hip Adduction / Abduction':1,'Abdomen / Back Extension':2,'Pulley / Functional Trainer':3,'Recumbent Bike':5};
   document.querySelectorAll('[data-node="537:566"]').forEach(facebook=>{
     if(facebook.parentElement.querySelector('.footer-instagram'))return;

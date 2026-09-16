@@ -1,5 +1,10 @@
 // Translate complete text blocks; retain English names and brands.
 window.LCChinese = {
+  "Longevity Courtyard photos": "长寿庭院活动照片",
+  "Previous photo": "上一张照片",
+  "Next photo": "下一张照片",
+  "Pause slideshow": "暂停轮播",
+  "Play slideshow": "播放轮播",
   "Please contact Longevity Courtyard for its current privacy policy and questions about your personal information. This website does not use contact forms, analytics, or tracking cookies.": "如需了解现行隐私政策，或对个人资料有疑问，请联系长寿庭院。本网站不使用联系表格、流量分析或追踪 Cookie。",
   "Please contact Longevity Courtyard to confirm current programme terms, prices, availability, and participation requirements before booking.": "预约前，请联系长寿庭院确认最新课程条款、收费、名额与参加条件。",
   "You can navigate this site using your keyboard, enlarge text with your browser’s zoom controls, and play or pause testimonial videos. For assistance with visiting the centre or joining a session, please call us.": "您可使用键盘浏览网站、透过浏览器放大文字，并播放或暂停学员影片。如需参观中心或参加课程的协助，请致电联系我们。",

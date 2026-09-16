@@ -6,6 +6,10 @@ const publishDir=path.join(projectRoot,'dist');
 if(path.dirname(publishDir)!==projectRoot||path.basename(publishDir)!=='dist')throw new Error('Invalid publish directory');
 fs.rmSync(publishDir,{recursive:true,force:true});
 fs.mkdirSync(publishDir,{recursive:true});
+// Use space-free public paths, including with older local preview servers.
+const carouselDir=path.join(projectRoot,'assets','carousel');
+fs.mkdirSync(carouselDir,{recursive:true});
+for(let i=1;i<=5;i++)fs.copyFileSync(path.join(projectRoot,'assets','images',`Carousell ${i}.jpg`),path.join(carouselDir,`photo-${i}.jpg`));
 for(const file of ['styles.css','app.js','assets'])fs.cpSync(path.join(projectRoot,file),path.join(publishDir,file),{recursive:true});
 const pages=require('../src/pages.json');
 const equipment=require('../src/equipment.json');
@@ -40,6 +44,10 @@ function syncSeniorsTeamSection(){
 syncSeniorsTeamSection();
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return{equipment:text};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
 function render(n,depth=0,inLink=false){
+ if(['679:499','483:1720','475:1390','688:979'].includes(n.id)){
+  const photos=Array.from({length:5},(_,i)=>`<img class="carousel-photo${i===0?' is-active':''}" src="assets/carousel/photo-${i+1}.jpg" alt="Longevity Courtyard activities — photo ${i+1}" aria-hidden="${i!==0}" decoding="async">`).join('');
+  return `<div class="design-node has-image photo-carousel" data-node="${n.id}" data-photo-carousel role="region" aria-roledescription="carousel" aria-label="Longevity Courtyard photos" style="left:${n.x}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;--original-width:${n.w};--original-height:${n.h}">${photos}<div class="carousel-shade" aria-hidden="true"></div><div class="photo-carousel-controls"><button type="button" data-photo-step="-1" aria-label="Previous photo">&#8249;</button><button type="button" data-photo-step="1" aria-label="Next photo">&#8250;</button></div></div>`;
+ }
  const coachCarousel=['670:1501','811:1754'].includes(n.id);
  if(n.name==='Nav Bar')return '';
  if(n.y+n.h<0)return '';

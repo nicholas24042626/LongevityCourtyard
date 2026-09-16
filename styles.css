@@ -585,3 +585,20 @@ body.is-zh[data-page="programmes"] [data-node="679:502"]::before{content:none}
 .tzu-chi-link{position:absolute;left:88%;right:0;top:32%;bottom:0;z-index:1;border-radius:3px}
 body[data-page="index"] [data-node="758:1521"]{width:100%!important}
 body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!important}
+
+/* Shared photo carousel inside the existing page hero frame. */
+.photo-carousel{overflow:hidden!important;background:#002e56}
+.photo-carousel .carousel-photo{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0;transition:opacity 800ms ease-in-out;pointer-events:none}
+.photo-carousel .carousel-photo.is-active{opacity:1}
+@media(prefers-reduced-motion:reduce){.photo-carousel .carousel-photo{transition:none}}
+.carousel-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent 65%);pointer-events:none}
+.photo-carousel-controls{position:absolute;right:24px;bottom:20px;z-index:3;display:flex;align-items:center;gap:8px;padding:4px;border-radius:28px;background:rgba(0,32,56,.85);color:white}
+.photo-carousel-controls button{display:grid;place-items:center;width:44px;height:44px;padding:0;background:transparent;color:white;border-radius:50%;font-size:26px;line-height:1}
+.photo-carousel-controls [data-photo-pause]{font-size:16px}
+.photo-carousel-controls button:hover{background:#ffffff30}
+.photo-carousel-controls span{min-width:42px;text-align:center;font-size:16px}
+@media(max-width:899px){.photo-carousel{aspect-ratio:16/9!important;min-height:220px}.photo-carousel-controls{right:10px;bottom:10px;gap:2px}}
+
+@media(min-width:900px){.photo-carousel{top:84px!important;height:403px!important}}
+/* The old programme banner title sits behind the fixed header. */
+@media(min-width:900px){body[data-page="programmes"] [data-node="679:502"]{display:none!important}}
