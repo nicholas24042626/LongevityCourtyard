@@ -14,7 +14,7 @@ const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>'
 const css=s=>Object.entries(s).map(([k,v])=>`${k.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}:${v}`).join(';');
 const links={'Home':'index.html','Programmes':'programmes.html','View our Programmes':'programmes.html','Fitness Team':'fitness-team.html','Stories':'stories.html','Equipment':'resources.html','Resources':'resources.html','Visit Us':'visit.html','Visit Us!':'visit.html','Learn More About Us →':'about.html','See more Equipment →':'resources.html','Meet the Fitness Team →':'fitness-team.html','See All Testimonials →':'stories.html','Daniel Phua':'fitness-team.html','Titisa "Ice" Jeamsakul':'holistic-team.html','Find us on Google Maps':'https://www.google.com/maps/search/?api=1&query=707+Jurong+West+Street+71+Singapore+640707','+65 6859 1961':'tel:+6568591961'};
 links['See Our Equipment']='resources.html';
-links['Facebook']='https://www.facebook.com/glow.tzuchisg/';
+links['Facebook']='https://www.facebook.com/longevitycourtyard';
 const whatsapp='https://wa.me/6568591961';
 const coachSelectors={
  '564:2583':{name:'Titisa Jeamsakul (Ice)',href:'holistic-team.html#coach-profile'},
