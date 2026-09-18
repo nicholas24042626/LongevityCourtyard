@@ -2,11 +2,12 @@
   const updateScale=()=>document.documentElement.style.setProperty('--page-scale',window.innerWidth>=900?document.documentElement.clientWidth/1440:1);
   window.addEventListener('resize',updateScale);updateScale();
   const toggle=document.querySelector('.menu-toggle');const nav=document.querySelector('#main-navigation');
-  function closeMenu(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label',document.documentElement.lang==='zh-Hans'?translateString('Open navigation'):'Open navigation')}
-  toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',document.documentElement.lang==='zh-Hans'?translateString(open?'Close navigation':'Open navigation'):(open?'Close navigation':'Open navigation'))});
+  function closeMenu(){nav.classList.remove('open');document.body.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label',document.documentElement.lang==='zh-Hans'?translateString('Open navigation'):'Open navigation')}
+  toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');document.body.classList.toggle('menu-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',document.documentElement.lang==='zh-Hans'?translateString(open?'Close navigation':'Open navigation'):(open?'Close navigation':'Open navigation'))});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
   document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))closeMenu()});
   nav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
+  window.addEventListener('resize',()=>{if(innerWidth>=900)closeMenu()});
   const zhTranslations=window.LCChinese||{};
   const originalContent=new WeakMap();
   const originalLabels=new WeakMap();
