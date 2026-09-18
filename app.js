@@ -8,6 +8,19 @@
   document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))closeMenu()});
   nav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
   window.addEventListener('resize',()=>{if(innerWidth>=900)closeMenu()});
+  // Long mobile pages can leave native lazy images blank until they are almost visible.
+  // Begin loading them ahead of the viewport so the picture is ready when users reach it.
+  const deferredImages=[...document.querySelectorAll('img[loading="lazy"]')];
+  if('IntersectionObserver' in window){
+    const imageLoader=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const img=entry.target;
+      img.loading='eager';
+      img.decode?.().catch(()=>{});
+      imageLoader.unobserve(img);
+    }),{rootMargin:'1200px 0px'});
+    deferredImages.forEach(img=>imageLoader.observe(img));
+  }else deferredImages.forEach(img=>{img.loading='eager'});
   const zhTranslations=window.LCChinese||{};
   const originalContent=new WeakMap();
   const originalLabels=new WeakMap();
