@@ -23,12 +23,12 @@ const whatsapp='https://wa.me/6568591961';
 const coachSelectors={
  '564:2583':{name:'Titisa Jeamsakul (Ice)',href:'holistic-team.html#coach-profile'},
  '564:2617':{name:'Daniel Phua',href:'fitness-team.html#coach-profile'},
- '564:2588':{name:'Ng Swee Gek Emily',initials:'E'},
- '564:2622':{name:'Ng Swee Gek Emily',initials:'E'},
- '564:2589':{name:'Soh Tiong Eng Fion',initials:'F'},
- '564:2623':{name:'Soh Tiong Eng Fion',initials:'F'},
- '564:2590':{name:'Dawn',initials:'D'},
- '564:2624':{name:'Dawn',initials:'D'}
+ '564:2588':{name:'Ng Swee Gek Emily',image:'assets/images/Emily.png',href:'emily.html#coach-profile'},
+ '564:2622':{name:'Ng Swee Gek Emily',image:'assets/images/Emily.png',href:'emily.html#coach-profile'},
+ '564:2589':{name:'Soh Tiong Eng Fion',image:'assets/images/Fion.png',href:'fion.html#coach-profile'},
+ '564:2623':{name:'Soh Tiong Eng Fion',image:'assets/images/Fion.png',href:'fion.html#coach-profile'},
+ '564:2590':{name:'Dawn',image:'assets/images/Dawn.png',href:'dawn.html#coach-profile'},
+ '564:2624':{name:'Dawn',image:'assets/images/Dawn.png',href:'dawn.html#coach-profile'}
 };
 function findNode(n,id){if(n.id===id)return n;for(const c of n.children||[]){const found=findNode(c,id);if(found)return found;}return null;}
 function syncSeniorsTeamSection(){
@@ -42,7 +42,45 @@ function syncSeniorsTeamSection(){
  Object.assign(target,synced,{id,x,y});
 }
 syncSeniorsTeamSection();
+const memberProfiles=[
+ {slug:'emily',title:'Emily | Fitness Team',name:'Ng Swee Gek Emily',first:'Emily',role:'Fitness Associate',image:'assets/images/Emily.png'},
+ {slug:'fion',title:'Fion | Fitness Team',name:'Soh Tiong Eng Fion',first:'Fion',role:'Fitness Associate',image:'assets/images/Fion.png'},
+ {slug:'dawn',title:'Dawn | Fitness Team',name:'Dawn',first:'Dawn',role:'Medical Coach',image:'assets/images/Dawn.png'},
+ {slug:'karis',title:'Karis | Fitness Team',name:'Karis',first:'Karis',role:'Nutrition Coach',image:'assets/images/Karis.png'}
+];
+const fitnessPage=pages.find(p=>p.slug==='fitness-team');
+for(const member of memberProfiles){
+ const page=JSON.parse(JSON.stringify(fitnessPage));
+ Object.assign(page,{slug:member.slug,title:member.title,navSlug:'fitness-team'});
+ const danielSelector=findNode(page.root,'564:2583');
+ if(danielSelector){
+  danielSelector.id=`member-daniel-${member.slug}`;
+  danielSelector.children=[];
+  danielSelector.style={borderRadius:'50%',background:'linear-gradient(rgba(217,217,217,1),rgba(217,217,217,1))'};
+  coachSelectors[danielSelector.id]={name:'Daniel Phua',image:'assets/images/189dd86bce5f226b338fa454f55b11b13070c53d.png',href:'fitness-team.html#coach-profile'};
+ }
+ const updates={
+  '564:2569':member.name,'564:2570':member.role,
+  '564:2573':'“Move well, stay strong, and enjoy everyday life.”',
+  '564:2575':'Guided Exercise','564:2577':'Mobility','564:2579':'Confidence',
+  '564:2592':`${member.first} supports members through safe, guided exercise at Longevity Courtyard. Contact our team to learn more about ${member.first} and the sessions she supports.`,
+  '564:2595':`Meet Coach ${member.first}`,
+  '564:2593':'“Every step towards better movement can make everyday life feel easier and more confident.”',
+  '564:2599':`A message from ${member.first}:`,
+  '564:2598':'Start at a pace that feels right for you. We will support you as you build strength, mobility, and confidence.'
+ };
+ for(const [id,text] of Object.entries(updates)){const node=findNode(page.root,id);if(node){node.text=text;node.name=text;node.lines=[text];}}
+ for(const id of ['564:2566','564:2594']){
+  const portrait=findNode(page.root,id);
+  if(portrait?.image){portrait.image.src=member.image;portrait.image.alt=`Portrait of ${member.name}`;portrait.image.style={objectFit:'contain',objectPosition:'center bottom',width:'100%',height:'100%',left:'0%',top:'0%'};}
+ }
+ const heroPortrait=findNode(page.root,'564:2566');
+ if(heroPortrait?.image)heroPortrait.image.style={objectFit:'contain',objectPosition:'center top',width:'116%',height:'181%',left:'-8%',top:'-17%'};
+ if(member.slug==='dawn'&&heroPortrait?.image)heroPortrait.image.style={objectFit:'contain',objectPosition:'center top',width:'108%',height:'169%',left:'-4%',top:'-8%'};
+ pages.push(page);
+}
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return{equipment:text};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
+let renderingPageSlug='';
 function render(n,depth=0,inLink=false){
  if(['679:499','483:1720','475:1390','688:979'].includes(n.id)){
   const photos=Array.from({length:5},(_,i)=>`<img class="carousel-photo${i===0?' is-active':''}" src="assets/carousel/photo-${i+1}.jpg" alt="Longevity Courtyard activities — photo ${i+1}" aria-hidden="${i!==0}" decoding="async">`).join('');
@@ -60,7 +98,8 @@ function render(n,depth=0,inLink=false){
  let tag=act?.href?'a':act?.dialog||act?.equipment?'button':isText?(parseFloat(n.style.fontSize)>=32?'h2':'p'):depth===1?(n.name==='Footer'?'footer':'section'):'div';
  const heading=depth===1?n.children.find(c=>c.text&&parseFloat(c.style.fontSize)>=30)?.text:null;
  const classes=['design-node',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
- const style={left:n.x+'px',top:n.y+'px',width:n.w+'px',height:n.h+'px','--original-width':n.w,'--original-height':n.h,'--mobile-order':Math.round(n.y*100+n.x),...n.style};
+ const selectorGroup=['564:2582','564:2616'].includes(n.id);
+ const style={left:n.x+'px',top:n.y+'px',width:(selectorGroup?610:n.w)+'px',height:n.h+'px','--original-width':selectorGroup?610:n.w,'--original-height':n.h,'--mobile-order':Math.round(n.y*100+n.x),...n.style};
  // Keep image overlays above the photograph and below the content.
  // Solid fills preceding an image are its backdrop, not an overlay.
  let attrs=`class="${classes}" data-node="${n.id}" style="${escape(css(style))}"`;
@@ -72,12 +111,22 @@ function render(n,depth=0,inLink=false){
  if(act?.equipment)attrs+=` type="button" data-equipment="${escape(act.equipment)}"`;
  if(n.id==='783:2110')attrs+=' data-equipment-slot';
  let inner='';
- if(coach?.initials)inner=`<span class="coach-initial" aria-hidden="true">${coach.initials}</span>`;
+ if(coach?.image)inner=`<img class="coach-selector-photo" src="${coach.image}" alt="" aria-hidden="true" decoding="async">`;
  if(n.video){inner=`<video controls playsinline preload="none" poster="${n.image.src}" aria-label="${escape(n.image.alt)}"><source src="${n.video}" type="video/mp4">Your browser does not support video playback.</video>`;}
  else if(n.image){inner=`<div class="image-crop" aria-hidden="true"><img src="${n.image.src}" alt="" loading="${depth<3?'eager':'lazy'}" decoding="async" style="${escape(css(n.image.style))}"></div>`;if(n.overlay)inner+=`<div class="image-overlay" style="background:${escape(n.overlay)}"></div>`;if(!n.children.length&&!act)attrs+=` role="img" aria-label="${escape(n.image.alt)}"`;}
  if(n.paths)inner+=`<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 ${n.w||1} ${n.h||1}" overflow="visible">${n.paths.map(p=>`<path d="${p.d}" fill="${p.fill}" fill-rule="${p.rule||'nonzero'}"/>`).join('')}</svg>`;
  if(isText)inner+=n.lines?n.lines.map(line=>`<span class="text-line">${escape(line)}</span>`).join(''):escape(n.text);
- inner+=n.children.map(c=>render(c,depth+1,inLink||!!act)).join('');
+ if(selectorGroup){
+  const team=[
+   {name:'Daniel Phua',href:'fitness-team.html#coach-profile',image:'assets/images/189dd86bce5f226b338fa454f55b11b13070c53d.png'},
+   {name:'Titisa Jeamsakul (Ice)',href:'holistic-team.html#coach-profile',image:'assets/images/b86fedffaf2cd6915cc6ad9d19520abe411c2a38.png'},
+   {name:'Ng Swee Gek Emily',href:'emily.html#coach-profile',image:'assets/images/Emily.png'},
+   {name:'Soh Tiong Eng Fion',href:'fion.html#coach-profile',image:'assets/images/Fion.png'},
+   {name:'Dawn',href:'dawn.html#coach-profile',image:'assets/images/Dawn.png'},
+   {name:'Karis',href:'karis.html#coach-profile',image:'assets/images/Karis.png'}
+  ];
+  inner+=team.map((member,index)=>`<a class="design-node coach-standard-selector" style="left:${index*105}px;top:0;width:85px;height:85px;--mobile-order:${index}" data-coach-selector href="${member.href}" aria-label="View ${member.name}'s profile" title="${member.name}"><img class="coach-selector-photo" src="${member.image}" alt="" aria-hidden="true" decoding="async"></a>`).join('');
+ }else inner+=n.children.map(c=>render(c,depth+1,inLink||!!act)).join('');
  if(n.id==='823:2477')inner+='<h1 class="mobile-headline">Stay Strong for the <em>Moments</em> that Matter.</h1>';
  if(n.id==='823:2483')inner+='<h1 class="mobile-headline">Strength belongs to <em>You.</em><br>Maintain Strength<br>Choose Yourself</h1>';
  const controls=coachCarousel?`<div class="coach-carousel-controls" data-carousel-controls="coaches-${n.id.replace(':','-')}" style="left:${n.x+n.w-108}px;top:${n.y+n.h+14}px;--mobile-order:${Math.round(n.y*100+n.x)+1}"><button type="button" data-carousel-direction="-1" aria-label="View previous coaches" aria-controls="coaches-${n.id.replace(':','-')}">←</button><button type="button" data-carousel-direction="1" aria-label="View next coaches" aria-controls="coaches-${n.id.replace(':','-')}">→</button></div>`:'';
@@ -85,8 +134,8 @@ function render(n,depth=0,inLink=false){
  return `<${tag} ${attrs}>${inner}</${tag}>${instagram}${controls}`;
 }
 function header(slug){return `<header class="site-header"><div class="nav-canvas"><div class="brand"><a class="brand-home" href="index.html" aria-label="Longevity Courtyard home"><img src="assets/images/d3785a90c69bb02a1026498fd15e24ba8c36ef10.png" alt="Longevity Courtyard, in collaboration with HUR and Tzu Chi"></a><a class="tzu-chi-link" href="https://www.tzuchi.org.sg/en/" target="_blank" rel="noopener noreferrer" aria-label="Tzu Chi Singapore website" title="Tzu Chi Singapore"></a></div><button class="menu-toggle" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button><nav id="main-navigation" aria-label="Main navigation">${[['Programmes','programmes'],['Fitness Team','fitness-team'],['Stories','stories'],['Equipment','resources']].map(([t,s])=>`<a href="${s}.html" ${slug===s?'aria-current="page"':''}>${t}</a>`).join('')}<div class="language-switch" aria-label="Language"><button type="button" lang="en" class="selected" aria-pressed="true">English</button><button type="button" lang="zh" aria-pressed="false">中文</button></div><a class="visit-button" href="visit.html">Visit Us!</a></nav></div></header>`;}
-for(const page of pages){const {root}=page;const content=root.children.map(n=>render(n,1)).join('\n');const html=`<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#002e56"><meta name="description" content="Coach-guided active ageing at Longevity Courtyard. Explore our 12-week programme, meet our team, and book a free trial session in Jurong West."><title>${page.title==='Home'?'Longevity Courtyard — Stay Strong for the Moments that Matter':page.title+' | Longevity Courtyard'}</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/fonts.css"><link rel="stylesheet" href="styles.css"><script>document.documentElement.style.setProperty('--page-scale',innerWidth>=900?innerWidth/1440:1)</script><script src="assets/zh.js" defer></script><script src="app.js" defer></script></head><body data-page="${page.slug}"><a class="skip-link" href="#main-content">Skip to content</a>${header(page.slug)}<main id="main-content" class="site-page" style="--page-height:${root.h}px" aria-label="${escape(page.title)}">${page.slug==='index'?'<h1 class="sr-only desktop-title">Stay Strong for the Moments that Matter.</h1>':`<h1 class="sr-only">${escape(page.title)}</h1>`}${content}</main><dialog id="information-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close dialog" autofocus>×</button><h2 id="dialog-title"></h2><div id="dialog-content"></div></dialog></body></html>`;
+for(const page of pages){renderingPageSlug=page.slug;const {root}=page;const content=root.children.map(n=>render(n,1)).join('\n');const html=`<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#002e56"><meta name="description" content="Coach-guided active ageing at Longevity Courtyard. Explore our 12-week programme, meet our team, and book a free trial session in Jurong West."><title>${page.title==='Home'?'Longevity Courtyard — Stay Strong for the Moments that Matter':page.title+' | Longevity Courtyard'}</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/fonts.css"><link rel="stylesheet" href="styles.css"><script>document.documentElement.style.setProperty('--page-scale',innerWidth>=900?innerWidth/1440:1)</script><script src="assets/zh.js" defer></script><script src="app.js" defer></script></head><body data-page="${page.slug}"><a class="skip-link" href="#main-content">Skip to content</a>${header(page.navSlug||page.slug)}<main id="main-content" class="site-page" style="--page-height:${root.h}px" aria-label="${escape(page.title)}">${page.slug==='index'?'<h1 class="sr-only desktop-title">Stay Strong for the Moments that Matter.</h1>':`<h1 class="sr-only">${escape(page.title)}</h1>`}${content}</main><dialog id="information-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close dialog" autofocus>×</button><h2 id="dialog-title"></h2><div id="dialog-content"></div></dialog></body></html>`;
 const templates=page.slug==='resources'?equipment.map((n,i)=>`<template id="equipment-${i}">${n.children.map(c=>render(c,3)).join('')}</template>`).join(''):'';
 const output=html.replace('</body>',templates+'</body>');
 fs.writeFileSync(path.join(projectRoot,page.slug+'.html'),output);

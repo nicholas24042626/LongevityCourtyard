@@ -91,6 +91,8 @@ body[data-page="index"] [data-node="669:1363"]>h2{margin:0 0 30px;font-family:'S
 }
 .design-node[data-coach-selector]{display:block;border-radius:50%;overflow:hidden;cursor:pointer}
 .coach-initial{display:grid;place-items:center;width:100%;height:100%;font-family:'Source Sans 3',sans-serif;font-size:28px;font-weight:600;color:#fff}
+.coach-selector-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center 18%;background:#d9d9d9}
+.coach-standard-selector{border:0;padding:0;background:#d9d9d9}
 /* Visit-page artwork was white on white; use the site's navy for contrast. */
 [data-node="514:499"] path,[data-node="545:2268"] path,
 [data-node="545:2270"] path,[data-node="545:2274"] path{fill:#002e56}
@@ -456,7 +458,7 @@ body[data-page="fitness-team"] #coach-profile *{
 body[data-page="fitness-team"] [data-node="564:2676"]{
  display:block!important;
  overflow:visible!important;
- background:#fbf7ee!important;
+ background:linear-gradient(135deg,#fbf0db 0%,#f6f2eb 100%)!important;
 }
 body[data-page="index"] [data-node="670:1497"],
 body[data-page="index"] [data-node="670:1497"] *,
