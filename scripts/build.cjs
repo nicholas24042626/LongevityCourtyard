@@ -49,6 +49,41 @@ const memberProfiles=[
  {slug:'karis',title:'Karis | Fitness Team',name:'Karis',first:'Karis',role:'Nutrition Coach',image:'assets/images/Karis.png'}
 ];
 const fitnessPage=pages.find(p=>p.slug==='fitness-team');
+// Draft profile copy based on the team's listed roles, without unverified credentials.
+const memberStories={
+ emily:{
+  motto:'“Strength grows with every small step you take for yourself.”',
+  specialties:['Everyday Strength','Steady Progress','Active Living'],
+  background:'Emily is a Fitness Associate at Longevity Courtyard, supporting members as they make movement part of everyday life. Her focus is on building a steady exercise routine and finding encouragement in small achievements. From getting started to keeping up the momentum, the focus is on growing stronger and feeling more confident in daily activities.',
+  highlight:'Building Strength Through Consistency',
+  quotes:['“A small achievement today can become the confidence to try a little more tomorrow.”','“I want every member to feel encouraged by their progress, one session at a time.”'],
+  message:'You do not have to do everything at once. Come along for a trial session and take your first step towards a regular movement routine. Let us work towards everyday strength, celebrate your progress, and keep you moving at a pace that feels manageable.'
+ },
+ fion:{
+  motto:'“Moving together makes every step feel a little more possible.”',
+  specialties:['Movement Confidence','Balance','Connection'],
+  background:'Fion is a Fitness Associate at Longevity Courtyard, supporting members on their active ageing journey. She puts connection and movement confidence at the heart of exercise. With a focus on feeling more at ease during each session, she encourages members to take part, find their rhythm, and enjoy working towards more comfortable everyday movement together.',
+  highlight:'Encouragement in Every Movement',
+  quotes:['“Feeling welcome is the first step towards feeling confident enough to begin.”','“Movement can be a chance to connect, share a smile, and discover what you can do.”'],
+  message:'If joining an exercise session feels unfamiliar, start by coming to meet us. We can help you settle in and take things one step at a time. Join a trial session to explore movement, meet others, and begin building confidence in a friendly setting.'
+ },
+ dawn:{
+  motto:'“Understanding your body is the first step towards moving with confidence.”',
+  specialties:['Body Awareness','Guided Movement','Wellbeing'],
+  background:'Dawn is the Medical Coach at Longevity Courtyard. Her role brings a health-aware perspective to staying active, with an emphasis on understanding your body and recognising your starting point. The focus is on helping members ask questions, communicate their concerns, and approach movement with greater awareness as they work towards everyday wellbeing.',
+  highlight:'A Thoughtful Approach to Wellbeing',
+  quotes:['“Confidence begins when you feel heard and understand the next step.”','“Listening to your body is part of making movement a lasting part of your life.”'],
+  message:'Bring your questions and share what matters to you. A trial session is an opportunity to talk with our team about your starting point and goals. Together, we can explore how the programme may fit into your journey towards a more active everyday life.'
+ },
+ karis:{
+  motto:'“Eating well starts with small choices that fit your everyday life.”',
+  specialties:['Balanced Eating','Everyday Habits','Nutrition'],
+  background:'Karis is the Nutrition Coach at Longevity Courtyard. Her approach connects eating well with the practical rhythms of daily life, from familiar meals to habits that are easier to maintain. The focus is on making nutrition approachable and helping members think about how everyday food choices can complement an active lifestyle and their personal wellbeing goals.',
+  highlight:'Making Everyday Nutrition Approachable',
+  quotes:['“Eating well can begin with one manageable change to a familiar meal.”','“The habits you can keep are the ones that fit into your everyday life.”'],
+  message:'Start with the meals you know and enjoy. Share your routine and questions with our team, and explore simple ways to make balanced eating part of your day. Visit us to learn how nutrition support can complement your movement and wellbeing journey.'
+ }
+};
 for(const member of memberProfiles){
  const page=JSON.parse(JSON.stringify(fitnessPage));
  Object.assign(page,{slug:member.slug,title:member.title,navSlug:'fitness-team'});
@@ -59,15 +94,16 @@ for(const member of memberProfiles){
   danielSelector.style={borderRadius:'50%',background:'linear-gradient(rgba(217,217,217,1),rgba(217,217,217,1))'};
   coachSelectors[danielSelector.id]={name:'Daniel Phua',image:'assets/images/189dd86bce5f226b338fa454f55b11b13070c53d.png',href:'fitness-team.html#coach-profile'};
  }
+ const story=memberStories[member.slug];
  const updates={
   '564:2569':member.name,'564:2570':member.role,
-  '564:2573':'“Move well, stay strong, and enjoy everyday life.”',
-  '564:2575':'Guided Exercise','564:2577':'Mobility','564:2579':'Confidence',
-  '564:2592':`${member.first} supports members through safe, guided exercise at Longevity Courtyard. Contact our team to learn more about ${member.first} and the sessions she supports.`,
-  '564:2595':`Meet Coach ${member.first}`,
-  '564:2593':'“Every step towards better movement can make everyday life feel easier and more confident.”',
+  '564:2573':story.motto,
+  '564:2575':story.specialties[0],'564:2577':story.specialties[1],'564:2579':story.specialties[2],
+  '564:2592':story.background,
+  '564:2595':story.highlight,
+  '564:2593':story.quotes.join('\n\n'),
   '564:2599':`A message from ${member.first}:`,
-  '564:2598':'Start at a pace that feels right for you. We will support you as you build strength, mobility, and confidence.'
+  '564:2598':story.message
  };
  for(const [id,text] of Object.entries(updates)){const node=findNode(page.root,id);if(node){node.text=text;node.name=text;node.lines=[text];}}
  for(const id of ['564:2566','564:2594']){
@@ -87,6 +123,7 @@ function render(n,depth=0,inLink=false){
   return `<div class="design-node has-image photo-carousel" data-node="${n.id}" data-photo-carousel role="region" aria-roledescription="carousel" aria-label="Longevity Courtyard photos" style="left:${n.x}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;--original-width:${n.w};--original-height:${n.h}">${photos}<div class="carousel-shade" aria-hidden="true"></div><div class="photo-carousel-controls"><button type="button" data-photo-step="-1" aria-label="Previous photo">&#8249;</button><button type="button" data-photo-step="1" aria-label="Next photo">&#8250;</button></div></div>`;
  }
  const coachCarousel=['670:1501','811:1754'].includes(n.id);
+ const memberProfile=n.id==='564:2676'&&Object.hasOwn(memberStories,renderingPageSlug);
  if(n.name==='Nav Bar')return '';
  if(n.y+n.h<0)return '';
  const isText=n.text!==undefined;
@@ -97,7 +134,7 @@ function render(n,depth=0,inLink=false){
  if(n.image?.alt?.includes('Logo Lockup'))act={href:'index.html'};
  let tag=act?.href?'a':act?.dialog||act?.equipment?'button':isText?(parseFloat(n.style.fontSize)>=32?'h2':'p'):depth===1?(n.name==='Footer'?'footer':'section'):'div';
  const heading=depth===1?n.children.find(c=>c.text&&parseFloat(c.style.fontSize)>=30)?.text:null;
- const classes=['design-node',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
+ const classes=['design-node',memberProfile?'member-profile':'',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
  const selectorGroup=['564:2582','564:2616'].includes(n.id);
  const style={left:n.x+'px',top:n.y+'px',width:(selectorGroup?610:n.w)+'px',height:n.h+'px','--original-width':selectorGroup?610:n.w,'--original-height':n.h,'--mobile-order':Math.round(n.y*100+n.x),...n.style};
  // Keep image overlays above the photograph and below the content.

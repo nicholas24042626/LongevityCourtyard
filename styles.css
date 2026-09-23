@@ -661,3 +661,38 @@ body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!
  .mobile-headline{font-size:38px}
  .site-footer{padding-inline:16px}
 }
+
+/* Member profiles retain Daniel/Ice's typography but let copy determine height. */
+.site-page:has(.member-profile){height:auto!important}
+.site-page:has(.member-profile)>.section{position:relative!important;top:auto!important;left:auto!important}
+.member-profile{display:grid!important;grid-template-columns:430px minmax(0,1fr);gap:0 48px;padding:100px 0 0!important;height:auto!important;overflow:visible!important}
+.member-profile .design-node{position:relative!important;left:auto!important;top:auto!important;width:auto!important;height:auto!important;min-width:0;max-width:100%;order:0}
+.member-profile .text-node{white-space:pre-wrap;overflow-wrap:break-word}
+.member-profile .text-line{white-space:pre-wrap;width:auto!important;min-width:0!important}
+.member-profile>[data-node="564:2566"]{height:570px!important;width:430px!important;align-self:end}
+.member-profile [data-node="564:2567"]{display:flex;flex-direction:column;gap:32px;padding:40px 100px 60px 0}
+.member-profile [data-node="564:2568"],.member-profile [data-node="564:2572"],.member-profile [data-node="564:2580"]{display:flex;flex-direction:column;gap:16px}
+.member-profile [data-node="564:2571"]{display:none}
+.member-profile [data-node="564:2574"]{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.member-profile [data-node="564:2574"]>.vector-node{width:30px!important;height:30px!important;flex:0 0 30px}
+.member-profile [data-node="564:2582"]{display:flex;flex-direction:row;flex-wrap:wrap;gap:20px}
+.member-profile [data-coach-selector]{width:85px!important;height:85px!important;flex:0 0 85px;padding:0!important;min-height:0!important}
+.member-profile [data-node="564:2591"]{grid-column:1 / -1;padding:56px 100px 64px}
+.member-profile [data-node="582:486"]{display:grid;grid-template-columns:minmax(0,409px) minmax(0,1fr);gap:48px 62px}
+.member-profile [data-node="564:2592"]{grid-column:1 / -1}
+.member-profile [data-node="582:475"]{display:flex;flex-direction:column;gap:20px;padding:0}
+.member-profile [data-node="564:2595"]{order:-1;max-width:280px}
+.member-profile [data-node="564:2594"]{height:480px!important;width:100%!important;min-height:0;aspect-ratio:auto}
+.member-profile [data-node="582:479"]{display:flex;flex-direction:column;gap:28px;padding:0}
+.member-profile [data-node="564:2596"],.member-profile [data-node="564:2597"]{display:none}
+.member-profile [data-node="564:2599"]{margin-top:12px}
+@media(max-width:899px){
+ .member-profile{display:flex!important;gap:32px;padding:40px 24px 0!important}
+ .member-profile>[data-node="564:2566"]{width:100%!important;height:400px!important;max-width:430px;align-self:center}
+ .member-profile [data-node="564:2567"]{padding:0;gap:28px}
+ .member-profile [data-node="564:2591"]{margin:0 -24px;padding:40px 24px;width:calc(100% + 48px)!important;max-width:none}
+ .member-profile [data-node="582:486"]{grid-template-columns:minmax(0,1fr);gap:32px}
+ .member-profile [data-node="564:2594"]{height:360px!important;max-height:360px}
+ .member-profile [data-node="564:2574"]>.vector-node{width:20px!important;height:20px!important;flex-basis:20px;display:block}
+ .member-profile [data-coach-selector]{width:64px!important;height:64px!important;flex-basis:64px}
+}
