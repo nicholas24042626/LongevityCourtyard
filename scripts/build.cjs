@@ -42,6 +42,14 @@ function syncSeniorsTeamSection(){
  Object.assign(target,synced,{id,x,y});
 }
 syncSeniorsTeamSection();
+// Remove retired homepage callouts from the generated markup in both languages.
+for(const page of pages.filter(page=>['index','for-anyone'].includes(page.slug))){
+ const removed=new Set(['668:1286','811:1625','669:1395','811:1683']);
+ const prune=node=>{node.children=node.children.filter(child=>!removed.has(child.id));node.children.forEach(prune);};
+ prune(page.root);
+ const teamButton=findNode(page.root,'811:1752');
+ if(teamButton)teamButton.y=1068;
+}
 const memberProfiles=[
  {slug:'emily',title:'Emily | Fitness Team',name:'Ng Swee Gek Emily',first:'Emily',role:'Fitness Associate',image:'assets/images/Emily.png'},
  {slug:'fion',title:'Fion | Fitness Team',name:'Soh Tiong Eng Fion',first:'Fion',role:'Fitness Associate',image:'assets/images/Fion.png'},
@@ -116,6 +124,27 @@ for(const member of memberProfiles){
  pages.push(page);
 }
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return renderingPageSlug==='resources'?{equipment:text}:{href:'resources.html#section-688-984'};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
+// Complete the homepage team using the same portraits and copy as their profiles.
+const homeCoaches=findNode(pages.find(p=>p.slug==='index').root,'811:1754');
+for(const member of memberProfiles){
+ let card=homeCoaches.children.find(card=>card.children.some(child=>child.text===member.name));
+ if(!card){
+  card=JSON.parse(JSON.stringify(homeCoaches.children[2]));
+  let part=0;
+  const identify=node=>{node.id=`home-${member.slug}-${part++}`;node.children.forEach(identify);};
+  identify(card);
+  homeCoaches.children.push(card);
+ }
+ const [photo,name,role,message]=card.children;
+ photo.image={...photo.image,src:member.image,alt:`Portrait of ${member.name}`,style:{objectFit:'cover',objectPosition:'center top',width:'145%',height:'145%',left:'-22.5%',top:'-8%',transform:'scaleX(-1)'}};
+ for(const [node,text] of [[name,member.name],[role,member.role],[message,memberStories[member.slug].motto]])Object.assign(node,{text,name:text,lines:[text],w:270});
+ name.href=`${member.slug}.html#coach-profile`;
+}
+homeCoaches.h=680;
+homeCoaches.children.forEach((card,index)=>{
+ Object.assign(card,{teamPart:'home-team-card',x:index*352,h:680});
+ card.children.forEach((node,i)=>{node.teamPart=['home-team-photo','home-team-name','home-team-role','home-team-message'][i];});
+});
 let renderingPageSlug='';
 // Semantic groups let phone layouts preserve the relationships in the desktop design.
 const coachLayoutClasses={
@@ -164,7 +193,7 @@ function render(n,depth=0,inLink=false){
  if(n.image?.alt?.includes('Logo Lockup'))act={href:'index.html'};
  let tag=act?.href?'a':act?.dialog||act?.equipment?'button':isText?(parseFloat(n.style.fontSize)>=32?'h2':'p'):depth===1?(n.name==='Footer'?'footer':'section'):'div';
  const heading=depth===1?n.children.find(c=>c.text&&parseFloat(c.style.fontSize)>=30)?.text:null;
- const classes=['design-node',starCopyGroup?'star-copy-group':'',contentGroup?'content-group':'',coachLayoutClasses[n.id]||'',surfaceClass(n),memberProfile?'member-profile':'',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
+ const classes=['design-node',n.teamPart||'',starCopyGroup?'star-copy-group':'',contentGroup?'content-group':'',coachLayoutClasses[n.id]||'',surfaceClass(n),memberProfile?'member-profile':'',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
  const selectorGroup=['564:2582','564:2616'].includes(n.id);
  const style={left:n.x+'px',top:n.y+'px',width:(selectorGroup?610:n.w)+'px',height:n.h+'px','--original-width':selectorGroup?610:n.w,'--original-height':n.h,'--mobile-order':Math.round(n.y*100+n.x),...n.style};
  // Keep image overlays above the photograph and below the content.

@@ -563,6 +563,14 @@ body.is-zh .text-node {
 }
 
 html[lang="zh-Hans"] body{font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif}
+body.is-zh :is([data-node="688:1045"],[data-node="688:987"],.approach-summary){white-space:pre-line;height:auto}
+@media(min-width:900px){
+ body.is-zh[data-page="resources"] .site-page{display:flex;flex-direction:column;height:auto}
+ body.is-zh[data-page="resources"] .site-page>.section{position:relative;top:auto!important;left:auto!important;flex-shrink:0}
+ body.is-zh [data-node="688:1043"]{height:900px!important}
+ body.is-zh [data-node="688:984"]{height:1050px!important}
+ body.is-zh [data-node="783:2110"]{top:550px!important}
+}
 /* Keep translated button labels centered without changing page copy alignment. */
 .language-switch{width:auto;flex-shrink:0}
 .language-switch>button{display:flex;align-items:center;justify-content:center;line-height:1;padding:0 10px}
@@ -577,7 +585,7 @@ body.is-zh .mobile-headline{font-family:'Microsoft YaHei','PingFang SC',sans-ser
 body.is-zh[data-page="programmes"] [data-node="679:502"]::before{content:none}
 @media(min-width:900px){
  body.is-zh[data-page="programmes"] [data-node="757:1281"]::before{content:""}
- body.is-zh[data-page="programmes"] [data-node="757:1281"]::after{content:"香格里拉课程"}
+ body.is-zh[data-page="programmes"] [data-node="757:1281"]::after{content:"Shangri-La 课程"}
  body.is-zh[data-page="programmes"] [data-node="757:1281"]{height:96px!important}
  body.is-zh[data-page="about"] [data-node="428:307"]{width:360px!important}
 }
@@ -835,6 +843,23 @@ body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!
  .site-footer a,.site-footer button{line-height:1.4!important}
 }
 
+/* Homepage coaches share equal photo frames and flowing, aligned text. */
+@media(max-width:899px){
+ [data-node="811:1752"]{margin-top:20px!important}
+}
+[data-coach-carousel]>.home-team-card{display:flex;flex-direction:column;gap:14px;height:auto!important;align-self:stretch}
+.home-team-card>.design-node{position:relative!important;left:auto!important;top:auto!important;width:100%!important;margin:0;height:auto!important;flex-shrink:0}
+.home-team-card>.home-team-photo{height:340px!important;min-height:340px;flex:none}
+.home-team-card>.home-team-name{min-height:80px}
+.home-team-card>.home-team-role{min-height:46px}
+.home-team-card .text-line{white-space:normal!important}
+@media(max-width:899px){
+ [data-coach-carousel]>.home-team-card{flex-basis:min(270px,calc(100vw - 54px));gap:14px!important}
+ .home-team-card>.home-team-name{font-size:28px!important;line-height:1.3!important;min-height:73px}
+ .home-team-card>.home-team-role{font-size:16px!important;line-height:1.45!important}
+ .home-team-card>.home-team-message{font-size:20px!important;line-height:1.4!important}
+}
+
 /* Give phone text a consistent edge and keep each decorative star with its copy. */
 @media(max-width:899px){
  body .site-page>.section{padding-inline:20px!important}
@@ -850,4 +875,57 @@ body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!
  .site-page .anyone-process{padding-inline:20px}
  .site-page :is(.shangri-la-approach,.programme-assessment){padding-inline:20px}
  .site-page .contact-section :is(.text-node,h2,p){text-align:center!important}
+ /* Omit the desktop reassurance strip from the phone homepage. */
+ body[data-page="index"] .site-page>[data-node="668:1332"]{display:none!important}
+ /* Keep the three introductory benefits as one compact, aligned list. */
+ .site-page [data-node="669:1394"]{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;width:100%!important;padding:0!important}
+ .site-page [data-node="669:1394"] .star-copy-group{gap:0}
+ .site-page [data-node="669:1394"] .star-copy-group>.text-node{padding-left:26px!important;font-size:18px!important;font-weight:500!important;line-height:1.55!important;text-wrap:wrap}
+ .site-page [data-node="669:1394"] .star-copy-group>.text-node::before{font-size:16px;line-height:1.75;top:0}
+}
+
+/* Compact section spacing on phones without shrinking readable text or controls. */
+@media(max-width:899px){
+ body .site-page>.section:not(:first-child):not(.site-footer):not(#coach-profile){padding-block:28px!important;gap:18px}
+ body:is([data-page="index"],[data-page="for-anyone"]) .anyone-process,
+ body .shangri-la-approach,body .programme-assessment{padding-block:28px!important}
+ .site-page :is(.approach-eyebrow,.approach-intro,.approach-summary){margin-bottom:22px}
+ .site-page :is(.shangri-la-approach,.anyone-process)>h2,
+ body[data-page="index"] [data-node="670:1398"]>h2,
+ body[data-page="for-anyone"] [data-node="811:1686"]>h2{margin-bottom:20px}
+ .site-page .approach-button{margin-top:24px}
+}
+
+/* Let Chinese copy determine card and section heights. */
+body.is-zh :is(.anyone-aspect-grid article,.process-grid article,.approach-grid article){min-height:0;height:auto;padding:22px 24px}
+body.is-zh .anyone-aspect-grid .assessment-card{height:auto;min-height:0}
+body.is-zh :is(.anyone-aspect-grid,.process-grid,.approach-grid) h3{margin-bottom:14px}
+body.is-zh .process-grid strong{margin-bottom:14px}
+@media(min-width:900px){
+ body.is-zh:is([data-page="index"],[data-page="for-anyone"]) .site-page{display:block;height:auto!important}
+ body.is-zh:is([data-page="index"],[data-page="for-anyone"]) .site-page>.section,
+ body.is-zh:is([data-page="index"],[data-page="for-anyone"]) .anyone-process{position:relative!important;top:auto!important;left:auto!important}
+ body.is-zh:is([data-page="index"],[data-page="for-anyone"]) :is([data-node="670:1398"],[data-node="811:1686"],.anyone-process){height:auto!important;padding-block:48px!important}
+ body.is-zh [data-node="688:1043"]{height:auto!important;min-height:675px;padding:60px 103px}
+ body.is-zh [data-node="688:1043"]>.text-node{position:relative;top:auto!important;left:auto!important;height:auto!important;margin-bottom:24px}
+ body.is-zh [data-node="688:1044"]{order:0}
+ body.is-zh [data-node="688:1046"]{order:1}
+ body.is-zh [data-node="688:1045"]{order:2}
+ body.is-zh [data-node="688:1043"]{display:flex;flex-direction:column;gap:0}
+ body.is-zh [data-node="688:984"]{height:auto!important;padding:46px 98px 40px;display:flex;flex-direction:column;gap:24px}
+ body.is-zh [data-node="688:984"]>.design-node{position:relative;top:auto!important;left:auto!important;height:auto!important;margin:0}
+ body.is-zh [data-node="783:2110"]{min-height:460px}
+}
+@media(max-width:899px){
+ body.is-zh .site-page>.section:not(:first-child):not(.site-footer):not(#coach-profile){padding-block:22px!important;gap:14px}
+ body.is-zh :is(.anyone-aspect-grid article,.process-grid article,.approach-grid article){padding:18px 20px}
+ body.is-zh .site-page :is(.approach-eyebrow,.approach-intro,.approach-summary){margin-bottom:16px}
+}
+/* Move the desktop programme block between equipment and the fitness team. */
+@media(min-width:900px){
+ body:not(.is-zh):is([data-page="index"],[data-page="for-anyone"]) .anyone-process{top:2000px!important}
+ body:not(.is-zh)[data-page="index"] [data-node="758:1322"],
+ body:not(.is-zh)[data-page="for-anyone"] [data-node="811:1711"]{top:3040px!important}
+ body:not(.is-zh)[data-page="index"] [data-node="670:1398"],
+ body:not(.is-zh)[data-page="for-anyone"] [data-node="811:1686"]{top:4131px!important}
 }
