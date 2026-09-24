@@ -115,10 +115,38 @@ for(const member of memberProfiles){
  if(heroPortrait?.image){heroPortrait.image.style.objectFit='cover';heroPortrait.image.style.objectPosition='center top';}
  pages.push(page);
 }
-function action(text){text=text?.trim();if(equipmentLabels.includes(text))return{equipment:text};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
+function action(text){text=text?.trim();if(equipmentLabels.includes(text))return renderingPageSlug==='resources'?{equipment:text}:{href:'resources.html#section-688-984'};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
 let renderingPageSlug='';
+// Semantic groups let phone layouts preserve the relationships in the desktop design.
+const coachLayoutClasses={
+ '564:2567':'coach-intro','564:2601':'coach-intro',
+ '564:2568':'coach-heading','564:2602':'coach-heading',
+ '564:2569':'coach-name','564:2603':'coach-name',
+ '564:2570':'coach-role','564:2604':'coach-role',
+ '564:2572':'coach-philosophy','564:2606':'coach-philosophy',
+ '564:2573':'coach-motto','564:2607':'coach-motto',
+ '564:2574':'coach-specialties','564:2608':'coach-specialties',
+ '564:2580':'coach-switcher','564:2614':'coach-switcher',
+ '564:2582':'coach-links','564:2616':'coach-links',
+ '564:2566':'coach-portrait','564:2634':'coach-portrait',
+ '564:2591':'coach-biography','564:2625':'coach-biography',
+ '582:486':'coach-bio-layout','582:475':'coach-bio-portrait-group','582:479':'coach-message-group',
+ '564:2592':'coach-summary','564:2626':'coach-summary',
+ '564:2594':'coach-bio-portrait','564:2633':'coach-bio-portrait',
+ '564:2595':'coach-highlight','564:2628':'coach-highlight',
+ '564:2593':'coach-quote','564:2627':'coach-quote',
+ '564:2599':'coach-message-label','564:2632':'coach-message-label',
+ '564:2598':'coach-message','564:2631':'coach-message'
+};
+function surfaceClass(n){
+ if(n.text!==undefined)return '';
+ const colors=[...(n.style.background||'').matchAll(/rgba?\((\d+),(\d+),(\d+)(?:,([\d.]+))?\)/g)].filter(m=>m[4]===undefined||Number(m[4])>.9);
+ if(!colors.length)return n.image&&n.children.length?'surface-photo':'';
+ const brightness=colors.reduce((sum,m)=>sum+.2126*Number(m[1])+.7152*Number(m[2])+.0722*Number(m[3]),0)/colors.length;
+ return brightness<155?'surface-dark':'surface-light';
+}
 function render(n,depth=0,inLink=false){
- if(['679:499','483:1720','475:1390','688:979'].includes(n.id)){
+ if(['679:499','483:1720','537:748','428:122','510:342','475:1390','688:979'].includes(n.id)){
   const photos=Array.from({length:5},(_,i)=>`<img class="carousel-photo${i===0?' is-active':''}" src="assets/carousel/photo-${i+1}.jpg" alt="Longevity Courtyard activities — photo ${i+1}" aria-hidden="${i!==0}" decoding="async">`).join('');
   return `<div class="design-node has-image photo-carousel" data-node="${n.id}" data-photo-carousel role="region" aria-roledescription="carousel" aria-label="Longevity Courtyard photos" style="left:${n.x}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;--original-width:${n.w};--original-height:${n.h}">${photos}<div class="carousel-shade" aria-hidden="true"></div><div class="photo-carousel-controls"><button type="button" data-photo-step="-1" aria-label="Previous photo">&#8249;</button><button type="button" data-photo-step="1" aria-label="Next photo">&#8250;</button></div></div>`;
  }
@@ -134,7 +162,7 @@ function render(n,depth=0,inLink=false){
  if(n.image?.alt?.includes('Logo Lockup'))act={href:'index.html'};
  let tag=act?.href?'a':act?.dialog||act?.equipment?'button':isText?(parseFloat(n.style.fontSize)>=32?'h2':'p'):depth===1?(n.name==='Footer'?'footer':'section'):'div';
  const heading=depth===1?n.children.find(c=>c.text&&parseFloat(c.style.fontSize)>=30)?.text:null;
- const classes=['design-node',memberProfile?'member-profile':'',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
+ const classes=['design-node',coachLayoutClasses[n.id]||'',surfaceClass(n),memberProfile?'member-profile':'',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
  const selectorGroup=['564:2582','564:2616'].includes(n.id);
  const style={left:n.x+'px',top:n.y+'px',width:(selectorGroup?610:n.w)+'px',height:n.h+'px','--original-width':selectorGroup?610:n.w,'--original-height':n.h,'--mobile-order':Math.round(n.y*100+n.x),...n.style};
  // Keep image overlays above the photograph and below the content.
@@ -174,7 +202,7 @@ function header(slug){return `<header class="site-header"><div class="nav-canvas
 for(const page of pages){renderingPageSlug=page.slug;const {root}=page;const content=root.children.map(n=>render(n,1)).join('\n');const html=`<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#002e56"><meta name="description" content="Coach-guided active ageing at Longevity Courtyard. Explore our 12-week programme, meet our team, and book a free trial session in Jurong West."><title>${page.title==='Home'?'Longevity Courtyard — Stay Strong for the Moments that Matter':page.title+' | Longevity Courtyard'}</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/fonts.css"><link rel="stylesheet" href="styles.css"><script>document.documentElement.style.setProperty('--page-scale',innerWidth>=900?innerWidth/1440:1)</script><script src="assets/zh.js" defer></script><script src="app.js" defer></script></head><body data-page="${page.slug}"><a class="skip-link" href="#main-content">Skip to content</a>${header(page.navSlug||page.slug)}<main id="main-content" class="site-page" style="--page-height:${root.h}px" aria-label="${escape(page.title)}">${page.slug==='index'?'<h1 class="sr-only desktop-title">Stay Strong for the Moments that Matter.</h1>':`<h1 class="sr-only">${escape(page.title)}</h1>`}${content}</main><dialog id="information-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close dialog" autofocus>×</button><h2 id="dialog-title"></h2><div id="dialog-content"></div></dialog></body></html>`;
 const templates=page.slug==='resources'?equipment.map((n,i)=>`<template id="equipment-${i}">${n.children.map(c=>render(c,3)).join('')}</template>`).join(''):'';
-const output=html.replace('</body>',templates+'</body>');
+const output=html.replace('</body>',templates+'</body>').replace(/[ \t]+$/gm,'');
 fs.writeFileSync(path.join(projectRoot,page.slug+'.html'),output);
 fs.writeFileSync(path.join(publishDir,page.slug+'.html'),output);}
 console.log(`Built ${pages.length} static pages in dist/ (and refreshed root pages for local preview).`);

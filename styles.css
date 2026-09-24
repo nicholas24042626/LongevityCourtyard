@@ -757,3 +757,76 @@ body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!
  .anyone-aspect-grid,.process-grid,.approach-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .anyone-aspect-grid .assessment-card{grid-column:1 / -1}
 }
+
+/* Phone layouts preserve desktop groups; colour follows the nearest surface. */
+@media(max-width:899px){
+ body .site-page>.section{height:auto!important}
+ body .site-page .design-node{top:auto!important;left:auto!important}
+ .site-page,.surface-light,.process-grid article,.approach-grid article,.programme-assessment{
+  --mobile-ink:#263238;--mobile-accent:#78551c;
+ }
+ .surface-dark,.surface-photo,.shangri-la-approach,[data-node="670:1398"],[data-node="811:1686"],.contact-section,.site-footer{
+  --mobile-ink:#fff;--mobile-accent:#fff0c6;
+ }
+ .site-page :is(.text-node,h2,h3,p,.approach-eyebrow,.footer-instagram){color:var(--mobile-ink)!important;-webkit-text-fill-color:currentColor!important}
+ .site-page .text-node[style*="background-clip"]{background:none!important;color:var(--mobile-accent)!important}
+ .site-page .text-node[style*="background-clip"] .text-line{background:none!important}
+ .site-page :is(.approach-eyebrow,.anyone-aspect-grid h3,.process-grid strong){color:var(--mobile-accent)!important}
+ .site-page a[href*="wa.me"]{--mobile-ink:#fff;background:#18783a!important;border-color:#18783a!important;color:#fff!important}
+ .site-page a[href*="about.html"],.site-page .approach-button{--mobile-ink:#fff}
+ .site-page .surface-light:where(a,button):not([href*="wa.me"]):not([href*="about.html"]){--mobile-ink:#263238}
+ .site-page .surface-photo .surface-dark{--mobile-ink:#fff;--mobile-accent:#fff0c6}
+ .site-page .text-node{white-space:normal!important;text-align:left!important}
+ .site-page .text-line{white-space:normal!important}
+ .site-page a>.text-node,.site-page button>.text-node{text-align:center!important}
+ /* The desktop 114px strip was clipping most of the paragraph on a phone. */
+ body[data-page="index"] [data-node="669:1333"],body[data-page="for-anyone"] [data-node="811:1641"]{
+  display:block!important;height:auto!important;min-height:0!important;padding:24px 20px!important;overflow:visible!important;
+ }
+ .fun-fact{display:block;height:auto;padding:0;text-align:left;font-size:18px;line-height:1.55;color:#39434b}
+ .site-page .fun-fact p{color:#39434b!important;margin:0}
+ .fun-fact strong{color:#182b3e}
+ .fun-fact>span{display:none}
+ /* Every coach has the same name / portrait / specialties / biography order. */
+ body #coach-profile{display:flex!important;flex-direction:column;gap:24px;padding:28px 20px 0!important;height:auto!important;overflow:visible!important}
+ #coach-profile .design-node{left:auto!important;top:auto!important;width:100%!important;height:auto!important;max-width:100%;min-width:0;position:relative!important;order:0;margin:0;padding:0;gap:16px}
+ #coach-profile .coach-intro{display:contents}
+ #coach-profile .coach-heading{display:flex;flex-direction:column;order:0;gap:8px}
+ #coach-profile .coach-heading>.vector-node{display:none!important}
+ #coach-profile .coach-name{font-size:32px!important;line-height:1.18!important}
+ #coach-profile .coach-role{font-size:20px!important;line-height:1.4!important}
+ #coach-profile .coach-portrait{order:1;align-self:center;width:min(100%,300px)!important;height:auto!important;min-height:0;max-height:none;aspect-ratio:1}
+ #coach-profile .coach-portrait .image-crop img{object-fit:cover!important;object-position:center top!important}
+ body[data-page="fitness-team"] #coach-profile .coach-portrait .image-crop img{object-position:center 60%!important}
+ body[data-page="holistic-team"] #coach-profile .coach-portrait .image-crop img{object-position:center bottom!important}
+ #coach-profile .coach-philosophy{order:2;display:flex;flex-direction:column;gap:20px}
+ #coach-profile .coach-motto{font-family:'Source Serif Pro',serif!important;font-size:26px!important;line-height:1.3!important}
+ #coach-profile .coach-specialties{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 16px}
+ #coach-profile .coach-specialties>.vector-node{display:none!important}
+ #coach-profile .coach-specialties>.text-node{display:inline-flex;align-items:center;gap:8px;flex:0 1 auto;width:auto!important;font-size:18px!important;line-height:1.4!important;color:#78551c!important}
+ #coach-profile .coach-specialties>.text-node::before{content:'✦';font-size:18px;flex:none;color:#96681f}
+ #coach-profile .coach-switcher{order:3;display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
+ #coach-profile .coach-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:12px}
+ #coach-profile [data-coach-selector]{width:64px!important;height:64px!important;flex:0 0 64px;min-height:0;padding:0;overflow:hidden!important}
+ #coach-profile .coach-biography{order:4;display:flex;flex-direction:column;gap:24px;width:calc(100% + 40px)!important;max-width:none;margin:0 -20px;padding:32px 20px!important;border-radius:0}
+ #coach-profile :is(.coach-bio-layout,.coach-bio-portrait-group,.coach-message-group){display:contents}
+ #coach-profile .coach-summary{order:0}
+ #coach-profile .coach-highlight{order:1;color:#fff0c6!important;font-size:20px!important;line-height:1.4!important}
+ #coach-profile .coach-bio-portrait{order:2;align-self:center;width:min(100%,280px)!important;height:300px!important;min-height:0;aspect-ratio:auto}
+ #coach-profile .coach-quote{order:3;font-size:22px!important;line-height:1.5!important}
+ #coach-profile .coach-quote .text-line{white-space:pre-line!important}
+ #coach-profile .coach-message-label{order:4;font-size:16px!important;font-weight:700;margin-top:8px}
+ #coach-profile .coach-message{order:5;font-size:18px!important;line-height:1.55!important}
+ #coach-profile .coach-biography .vector-node{display:none!important}
+ .contact-section .text-node{text-align:center!important}
+ .contact-section{background:#25364b!important}
+ .contact-section .image-overlay{background:rgba(0,0,0,.68)!important}
+ .site-page h2>span:not(.text-line),.site-page .mobile-headline em{color:var(--mobile-accent)!important}
+ [data-node="787:2165"],[data-node="811:1815"]{width:72px!important;height:110px!important;min-height:0!important;align-self:center;aspect-ratio:auto}
+ .site-page .approach-summary{margin-bottom:28px}
+ .site-footer [data-node="537:542"]{display:grid;grid-template-columns:1fr;gap:28px;padding:0}
+ .site-footer [data-node="537:542"]>.layout-node{padding:0;gap:10px}
+ .site-footer [data-node="537:536"]{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px 16px}
+ .site-footer .text-node[style*="background-clip"]{font-size:22px!important}
+ .site-footer a,.site-footer button{line-height:1.4!important}
+}

@@ -122,12 +122,16 @@
       }));
       const scroll=window.scrollY;
       const update=()=>{
+        document.querySelectorAll('[data-photo-carousel]').forEach(carousel=>photoCarouselControllers.get(carousel)?.());
         document.querySelector('main').replaceWith(replacement);
+        initPhotoCarousels(replacement);
         document.title=parsed.title;document.body.dataset.page=parsed.body.dataset.page;
         if(push)history.pushState({coach:true},'',url.pathname+url.hash);
         window.LCApplyLanguage?.(localStorage.getItem('lc-language')==='zh'?'zh':'en');
-        updateScale();window.scrollTo({top:scroll,behavior:'instant'});
+        updateScale();
         const profile=document.querySelector('#coach-profile');profile.tabIndex=-1;profile.focus({preventScroll:true});
+        const top=innerWidth<900&&push?profile.getBoundingClientRect().top+window.scrollY-document.querySelector('.site-header').getBoundingClientRect().height:scroll;
+        window.scrollTo({top,behavior:'instant'});
       };
       const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(document.startViewTransition&&!reduced){await document.startViewTransition(update).finished;}
@@ -143,7 +147,7 @@
     if(!link||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0||location.protocol==='file:')return;
     event.preventDefault();changeCoach(new URL(link.href));
   });
-  window.addEventListener('popstate',()=>{if(document.querySelector('#coach-profile')&&/\/(fitness-team|holistic-team)\.html$/.test(location.pathname))changeCoach(new URL(location.href),false)});
+  window.addEventListener('popstate',()=>{if(document.querySelector('#coach-profile')&&/\/(fitness-team|holistic-team|emily|fion|dawn|karis)\.html$/.test(location.pathname))changeCoach(new URL(location.href),false)});
   dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
   dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');opener?.focus()});
@@ -229,7 +233,9 @@
     const nextSection=document.querySelector(seniors?'[data-node="758:1322"]':'[data-node="811:1711"]');
     if(nextSection)nextSection.parentElement.insertBefore(process,nextSection);
   }
-  document.querySelectorAll('[data-photo-carousel]').forEach(carousel=>{
+  const photoCarouselControllers=new WeakMap();
+  function initPhotoCarousels(root=document){root.querySelectorAll('[data-photo-carousel]').forEach(carousel=>{
+    if(photoCarouselControllers.has(carousel))return;
     const photos=[...carousel.querySelectorAll('.carousel-photo')];
     const reduced=matchMedia('(prefers-reduced-motion: reduce)');
     let index=0,paused=reduced.matches,loading=false;
@@ -253,9 +259,12 @@
       if(!['ArrowLeft','ArrowRight'].includes(event.key))return;
       event.preventDefault();show(event.key==='ArrowLeft'?-1:1);
     });
-    reduced.addEventListener('change',()=>{paused=reduced.matches});
-    setInterval(()=>{if(!paused&&!document.hidden&&!carousel.querySelector(':focus-visible'))show(1)},5000);
-  });
+    const onMotionChange=()=>{paused=reduced.matches};
+    reduced.addEventListener('change',onMotionChange);
+    const timer=setInterval(()=>{if(carousel.isConnected&&!paused&&!document.hidden&&!carousel.querySelector(':focus-visible'))show(1)},5000);
+    photoCarouselControllers.set(carousel,()=>{clearInterval(timer);reduced.removeEventListener('change',onMotionChange);photoCarouselControllers.delete(carousel)});
+  });}
+  initPhotoCarousels();
   const equipmentMap={'Leg Extension / Curl':0,'Shoulder Press / Lat Pulldown':4,'Hip Adduction / Abduction':1,'Abdomen / Back Extension':2,'Pulley / Functional Trainer':3,'Recumbent Bike':5};
   document.querySelectorAll('[data-node="537:566"]').forEach(facebook=>{
     if(facebook.parentElement.querySelector('.footer-instagram'))return;
