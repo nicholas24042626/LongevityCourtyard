@@ -357,6 +357,8 @@ body[data-page="programmes"] [data-node="679:588"]{top:7005px!important}
 
 /* Brand tokens and shared control treatment. */
 :root{
+ --trial-green:#126a34;
+ --trial-green-hover:#0d5228;
  --brand-navy:#6073be;
  --brand-blue:#6073be;
  --brand-gold:#c89b4a;
@@ -421,13 +423,13 @@ body[data-page="resources"] [data-node="758:1479"] .text-node,body[data-page="re
 
 /* WhatsApp actions retain their familiar green affordance. */
 .design-node:where(a,button)[href*="wa.me"]{
- background:#3fd049!important;
- border-color:#3fd049!important;
+ background:var(--trial-green)!important;
+ border-color:var(--trial-green)!important;
  color:#fff!important;
 }
 .design-node:where(a,button)[href*="wa.me"]:hover{
- background:#2eaf38!important;
- border-color:#2eaf38!important;
+ background:var(--trial-green-hover)!important;
+ border-color:var(--trial-green-hover)!important;
  color:#fff!important;
 }
 
@@ -462,6 +464,8 @@ body[data-page="fitness-team"] [data-node="564:2676"]{
  overflow:visible!important;
  background:linear-gradient(135deg,#fbf0db 0%,#f6f2eb 100%)!important;
 }
+.site-page a[href*="wa.me"]{background:var(--trial-green)!important;border-color:var(--trial-green)!important;color:#fff!important}
+.site-page a[href*="wa.me"]:hover{background:var(--trial-green-hover)!important;border-color:var(--trial-green-hover)!important}
 body[data-page="index"] [data-node="670:1497"],
 body[data-page="index"] [data-node="670:1497"] *,
 body[data-page="index"] [data-node="670:1501"],
@@ -772,7 +776,7 @@ body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!
  .site-page .text-node[style*="background-clip"]{background:none!important;color:var(--mobile-accent)!important}
  .site-page .text-node[style*="background-clip"] .text-line{background:none!important}
  .site-page :is(.approach-eyebrow,.anyone-aspect-grid h3,.process-grid strong){color:var(--mobile-accent)!important}
- .site-page a[href*="wa.me"]{--mobile-ink:#fff;background:#18783a!important;border-color:#18783a!important;color:#fff!important}
+ .site-page a[href*="wa.me"]{--mobile-ink:#fff;background:var(--trial-green)!important;border-color:var(--trial-green)!important;color:#fff!important}
  .site-page a[href*="about.html"],.site-page .approach-button{--mobile-ink:#fff}
  .site-page .surface-light:where(a,button):not([href*="wa.me"]):not([href*="about.html"]){--mobile-ink:#263238}
  .site-page .surface-photo .surface-dark{--mobile-ink:#fff;--mobile-accent:#fff0c6}
@@ -829,4 +833,21 @@ body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!
  .site-footer [data-node="537:536"]{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px 16px}
  .site-footer .text-node[style*="background-clip"]{font-size:22px!important}
  .site-footer a,.site-footer button{line-height:1.4!important}
+}
+
+/* Give phone text a consistent edge and keep each decorative star with its copy. */
+@media(max-width:899px){
+ body .site-page>.section{padding-inline:20px!important}
+ .site-page .card-row>.content-group{padding:0!important;border-radius:0}
+ .site-page :is(.approach-eyebrow,.approach-summary,.not-gym-intro,.approach-intro,.process-footnote){text-align:left;margin-inline:0}
+ .site-page .text-node{max-width:100%;text-wrap:pretty}
+ .site-page .star-copy-group{display:flex!important;flex-direction:column;align-items:stretch;gap:16px;padding:0;width:100%!important}
+ .site-page>.section.star-copy-group{padding:24px 20px!important}
+ .site-page .star-copy-group>.vector-node{display:none!important}
+ .site-page .star-copy-group>.text-node{position:relative!important;order:0!important;align-self:stretch;width:100%!important;padding:0 0 0 28px!important;margin:0;text-align:left!important;font-size:18px!important;line-height:1.5!important}
+ .site-page .star-copy-group>.text-node::before{content:'✦';position:absolute;left:0;top:1px;font-size:18px;line-height:1.5;color:var(--mobile-accent,#78551c)}
+ .site-page .star-copy-group:has(>.fun-fact){display:block!important}
+ .site-page .anyone-process{padding-inline:20px}
+ .site-page :is(.shangri-la-approach,.programme-assessment){padding-inline:20px}
+ .site-page .contact-section :is(.text-node,h2,p){text-align:center!important}
 }

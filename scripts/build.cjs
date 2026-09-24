@@ -155,6 +155,8 @@ function render(n,depth=0,inLink=false){
  if(n.name==='Nav Bar')return '';
  if(n.y+n.h<0)return '';
  const isText=n.text!==undefined;
+ const starCopyGroup=!coachLayoutClasses[n.id]&&n.children.some(child=>/^Star\b/.test(child.name));
+ const contentGroup=!isText&&!n.image&&!n.paths&&!n.style.background&&!n.style.border&&!n.style.borderRadius&&!n.style.boxShadow;
  const label=n.children.length===1&&n.children[0].text?n.children[0].text:n.text;
  let act=!inLink?(n.href?{href:n.href}:action(label)):null;
  const coach=coachSelectors[n.id];
@@ -162,7 +164,7 @@ function render(n,depth=0,inLink=false){
  if(n.image?.alt?.includes('Logo Lockup'))act={href:'index.html'};
  let tag=act?.href?'a':act?.dialog||act?.equipment?'button':isText?(parseFloat(n.style.fontSize)>=32?'h2':'p'):depth===1?(n.name==='Footer'?'footer':'section'):'div';
  const heading=depth===1?n.children.find(c=>c.text&&parseFloat(c.style.fontSize)>=30)?.text:null;
- const classes=['design-node',coachLayoutClasses[n.id]||'',surfaceClass(n),memberProfile?'member-profile':'',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
+ const classes=['design-node',starCopyGroup?'star-copy-group':'',contentGroup?'content-group':'',coachLayoutClasses[n.id]||'',surfaceClass(n),memberProfile?'member-profile':'',isText?'text-node':'layout-node',depth===1?'section':'',n.image?'has-image':'',n.clip?'clip':'',n.paths?'vector-node':'',!isText&&!n.image&&!n.paths&&!n.children.length?'empty-node':'',n.name==='Footer'?'site-footer':'',n.name==='Begin Your Journey'?'contact-section':'',n.video?'video-node':'',n.children.length>1&&n.children.filter(c=>c.h>100).length>1&&n.children.filter(c=>c.h>100).every(c=>Math.abs(c.y-n.children.filter(c=>c.h>100)[0].y)<40)?'card-row':''].filter(Boolean).join(' ');
  const selectorGroup=['564:2582','564:2616'].includes(n.id);
  const style={left:n.x+'px',top:n.y+'px',width:(selectorGroup?610:n.w)+'px',height:n.h+'px','--original-width':selectorGroup?610:n.w,'--original-height':n.h,'--mobile-order':Math.round(n.y*100+n.x),...n.style};
  // Keep image overlays above the photograph and below the content.
