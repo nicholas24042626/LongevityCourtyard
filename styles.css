@@ -92,6 +92,8 @@ body[data-page="index"] [data-node="669:1363"]>h2{margin:0 0 30px;font-family:'S
 .design-node[data-coach-selector]{display:block;border-radius:50%;overflow:hidden;cursor:pointer}
 .coach-initial{display:grid;place-items:center;width:100%;height:100%;font-family:'Source Sans 3',sans-serif;font-size:28px;font-weight:600;color:#fff}
 .coach-selector-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center 18%;background:#d9d9d9}
+/* Face the four members' portraits in the same direction as Daniel's. */
+#coach-profile img:is([src$="/Emily.png"],[src$="/Dawn.png"],[src$="/Karis.png"],[src$="/Fion.png"]){transform:scaleX(-1)}
 .coach-standard-selector{border:0;padding:0;background:#d9d9d9}
 /* Visit-page artwork was white on white; use the site's navy for contrast. */
 [data-node="514:499"] path,[data-node="545:2268"] path,
@@ -695,4 +697,63 @@ body[data-page="index"] [data-node="758:1521"]>.layout-node{padding-inline:12px!
  .member-profile [data-node="564:2594"]{height:360px!important;max-height:360px}
  .member-profile [data-node="564:2574"]>.vector-node{width:20px!important;height:20px!important;flex-basis:20px;display:block}
  .member-profile [data-coach-selector]{width:64px!important;height:64px!important;flex-basis:64px}
+}
+
+/* Keep portrait heads inside their frames, including the circular coach links. */
+.coach-selector-photo{object-position:center top}
+@media(max-width:899px){
+ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+ .site-page{overflow-x:clip}
+ .text-node{font-size:clamp(18px,4.6vw,20px)!important;line-height:1.5!important;white-space:normal;overflow-wrap:break-word}
+ .text-node .text-line{white-space:normal}
+ .text-node:is(h2){font-size:clamp(28px,7vw,36px)!important;line-height:1.2!important}
+ .member-profile [data-node="564:2593"] .text-line{white-space:pre-line}
+ .layout-node,.layout-node>*{min-width:0}
+ .section{padding-inline:20px}
+ .section:has(>.photo-carousel){padding:24px 20px 32px!important;gap:20px}
+ .section:has(>.photo-carousel)>.text-node{color:#263f61!important;-webkit-text-fill-color:#263f61!important;background:none!important;font-size:clamp(28px,7vw,36px)!important}
+ .photo-carousel{border-radius:16px;max-height:300px!important}
+ .mobile-headline{font-size:clamp(36px,10vw,44px)}
+ .menu-toggle{width:48px;height:48px;flex-basis:48px}
+ .nav-canvas{padding-inline:12px}
+ .brand{min-width:0;flex-shrink:1}
+ .language-switch>button{min-height:44px;height:44px}
+ .nav-canvas .language-switch{height:52px}
+ .nav-canvas nav{overscroll-behavior:contain;padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ button,a{touch-action:manipulation}
+ /* Stack both testimonials so the second video is discoverable without a swipe. */
+ [data-node="404:489"],[data-node="811:1787"]{flex-direction:column!important;width:100%!important;gap:28px;overflow:visible!important}
+ [data-node="404:489"]>.layout-node,[data-node="811:1787"]>.layout-node{min-width:0!important;width:100%!important;max-width:100%;padding:0}
+ .video-node{aspect-ratio:16/9!important;min-height:0!important;max-height:none!important}
+ .video-node video{object-fit:contain;background:#182333}
+ body[data-page="stories"] .story-video-selector{min-height:0;padding:20px}
+ body[data-page="stories"] .story-video-selector video{height:auto;aspect-ratio:16/9;object-fit:contain}
+ .anyone-aspect-grid article,.anyone-aspect-grid article:nth-child(n+6),.process-grid article,.approach-grid article,.approach-grid .approach-image-card{padding:24px 20px;min-height:0}
+ .anyone-aspect-grid p,.process-grid p,.approach-grid p{font-size:18px;line-height:1.5}
+ .anyone-aspect-grid h3,.process-grid h3{margin-bottom:16px}
+ .fun-fact{gap:12px;padding:20px 0;font-size:18px;line-height:1.5}
+ .fun-fact>span{display:none}
+ .contact-section{min-height:0;padding:40px 20px}
+ .contact-section a.layout-node{width:100%!important;max-width:360px;padding:14px 18px!important}
+ .site-footer .text-node{font-size:18px!important}
+ .site-footer h2.text-node{font-size:28px!important}
+ /* Original desktop image offsets must not crop faces on narrow screens. */
+ #coach-profile .image-crop img{width:100%!important;height:100%!important;left:0!important;top:0!important;object-fit:contain!important;object-position:center top!important}
+ .member-profile>[data-node="564:2566"] .image-crop img{object-fit:cover!important}
+ .member-profile{padding-top:28px!important;gap:24px}
+ .member-profile [data-node="564:2567"]{display:contents}
+ .member-profile [data-node="564:2568"]{order:0;gap:8px}
+ .member-profile>[data-node="564:2566"]{order:1;height:clamp(320px,100vw,400px)!important;min-height:0;max-width:360px}
+ .member-profile [data-node="564:2572"]{order:2}
+ .member-profile [data-node="564:2580"]{order:3}
+ .member-profile [data-node="564:2591"]{order:4}
+ .member-profile [data-node="564:2569"]{font-size:clamp(30px,8vw,38px)!important}
+ .member-profile [data-node="564:2570"]{font-size:20px!important}
+ .member-profile [data-node="564:2573"]{font-size:clamp(26px,6.5vw,32px)!important}
+ .member-profile [data-node="564:2582"]{gap:16px}
+ .member-profile [data-node="564:2599"]{font-size:16px!important}
+}
+@media(min-width:600px) and (max-width:899px){
+ .anyone-aspect-grid,.process-grid,.approach-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .anyone-aspect-grid .assessment-card{grid-column:1 / -1}
 }

@@ -110,9 +110,9 @@ for(const member of memberProfiles){
   const portrait=findNode(page.root,id);
   if(portrait?.image){portrait.image.src=member.image;portrait.image.alt=`Portrait of ${member.name}`;portrait.image.style={objectFit:'contain',objectPosition:'center bottom',width:'100%',height:'100%',left:'0%',top:'0%'};}
  }
+ // Anchor the head at the top; crop only the lower body in the hero frame.
  const heroPortrait=findNode(page.root,'564:2566');
- if(heroPortrait?.image)heroPortrait.image.style={objectFit:'contain',objectPosition:'center top',width:'116%',height:'181%',left:'-8%',top:'-17%'};
- if(member.slug==='dawn'&&heroPortrait?.image)heroPortrait.image.style={objectFit:'contain',objectPosition:'center top',width:'108%',height:'169%',left:'-4%',top:'-8%'};
+ if(heroPortrait?.image){heroPortrait.image.style.objectFit='cover';heroPortrait.image.style.objectPosition='center top';}
  pages.push(page);
 }
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return{equipment:text};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
