@@ -940,3 +940,19 @@ body.is-zh .process-grid strong{margin-bottom:14px}
 }
 .anyone-aspect-grid h3{color:#78551c}
 .anyone-aspect-grid p{color:#263238}
+/* One clean frame around each homepage coach portrait and biography. */
+[data-coach-carousel]>.home-team-card{
+ border:1px solid #dfd2b4!important;
+ border-radius:20px!important;
+ background:#fffaf1!important;
+ box-shadow:0 3px 8px rgba(66,53,29,.08)!important;
+ overflow:hidden!important;
+ padding:0 0 20px!important;
+}
+.home-team-card>.home-team-photo{
+ border-radius:19px 19px 0 0!important;
+ border-bottom:1px solid #dfd2b4!important;
+ box-shadow:none!important;
+}
+.home-team-card>.text-node{width:calc(100% - 32px)!important;margin-inline:16px!important}
+.home-team-card>.home-team-role{background:none!important;color:#78551c!important;-webkit-text-fill-color:currentColor!important}
