@@ -45,6 +45,7 @@ syncSeniorsTeamSection();
 // Remove retired homepage callouts from the generated markup in both languages.
 for(const page of pages.filter(page=>['index','for-anyone'].includes(page.slug))){
  const removed=new Set(['668:1286','811:1625','669:1395','811:1683']);
+ if(page.slug==='index')removed.add('673:1608');
  const prune=node=>{node.children=node.children.filter(child=>!removed.has(child.id));node.children.forEach(prune);};
  prune(page.root);
  const teamButton=findNode(page.root,'811:1752');
