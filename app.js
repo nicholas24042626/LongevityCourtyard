@@ -195,6 +195,18 @@
     main.insertBefore(approach,sessionsSection);
     main.insertBefore(assessment,sessionsSection);
   }
+  if(document.body.dataset.page==='programmes'){
+    // Keep the week label inside its card when the timeline stacks on phones.
+    for(const [cardId,labelId] of [['683:843','683:845'],['683:847','683:849'],['683:851','683:853']]){
+      const card=document.querySelector(`[data-node="${cardId}"]`);
+      const label=document.querySelector(`[data-node="${labelId}"]`);
+      if(!card||!label)continue;
+      const mobileLabel=document.createElement('p');
+      mobileLabel.className='text-node timeline-week';
+      mobileLabel.textContent=label.textContent.trim();
+      card.prepend(mobileLabel);
+    }
+  }
   if(document.body.dataset.page==='stories'){
     const storyFrame=document.querySelector('[data-node="828:2511"]');
     const victor=storyFrame?.querySelector('[data-node="591:516"]');
