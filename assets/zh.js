@@ -529,3 +529,38 @@ window.LCChinese = {
   "Visit Us | Longevity Courtyard": "预约参观 | Longevity Courtyard",
   "About Us | Longevity Courtyard": "关于我们 | Longevity Courtyard"
 };
+
+Object.assign(window.LCChinese,{
+  "Plans": "配套",
+  "OUR PLANS": "我们的配套",
+  "Choose your next step": "选择适合您的下一步",
+  "Start with a free trial, follow a structured programme, or keep moving with a monthly pass.": "从免费体验开始，参加系统化训练计划，或选择月度配套继续运动。",
+  "Try a session": "先来体验",
+  "Free trial session": "免费体验课程",
+  "$0 Free, one time only": "$0\n免费，仅限一次",
+  "Try Longevity Courtyard before choosing a plan.": "先体验 Longevity Courtyard，再选择适合您的配套。",
+  "1 trial session": "1堂体验课",
+  "Experience a coach-guided session": "体验专业教练指导的课程",
+  "Book a free trial": "预约免费体验",
+  "A structured start": "有系统地开始",
+  "3-month Shangri-La plan": "3个月 Shangri-La 配套",
+  "$220 For 3 months": "$220\n3个月费用",
+  "Build a routine with guided training and progress reviews.": "通过专业指导与进度评估，建立规律运动习惯。",
+  "33 structured sessions, including Longevity Courtyard sessions": "33堂系统化课程，包括 Longevity Courtyard 训练",
+  "Assessment support before and after the programme": "课程前后的评估支持",
+  "Coach-supervised group sessions": "教练指导的小组课程",
+  "Resistance adjusted as you progress": "根据进度调整训练阻力",
+  "Progress tracking": "追踪训练进度",
+  "Ask about Shangri-La": "咨询 Shangri-La",
+  "Keep moving": "继续保持活力",
+  "Monthly Longevity Courtyard pass": "Longevity Courtyard 月度配套",
+  "$74 Per month": "$74\n每月费用",
+  "Continue exercising regularly with coach support.": "在教练支持下，继续规律运动。",
+  "8 sessions per month": "每月8堂课",
+  "Ongoing supervised Longevity Courtyard sessions": "持续参加教练指导的 Longevity Courtyard 课程",
+  "Flexible continuation after the 12-week programme": "12周计划结束后可灵活续练",
+  "Ask about the monthly pass": "咨询月度配套",
+  "Terms and conditions apply.": "须遵守条款与条件。",
+  "Not sure which plan to choose?": "不确定该选哪个配套？",
+  "Speak with our team. We can help you understand the options.": "欢迎联系我们的团队，了解各个配套。"
+});

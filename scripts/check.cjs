@@ -4,7 +4,7 @@ const publishDir=path.resolve(__dirname,'../dist');
 assert(fs.existsSync(publishDir),'Missing dist/: run npm run build before npm test');
 process.chdir(publishDir);
 const memberPages=['emily','fion','dawn','karis'].map(slug=>({slug}));
-const checkedPages=[...pages,...memberPages];
+const checkedPages=[...pages,...memberPages,{slug:'plans'}];
 const allowed=new Set([...checkedPages.map(page=>page.slug+'.html'),'styles.css','app.js','assets']);
 for(const entry of fs.readdirSync('.'))assert(allowed.has(entry),`Unexpected publish entry: ${entry}`);
 let refs=0;

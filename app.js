@@ -32,7 +32,7 @@
     return Object.hasOwn(zhTranslations,key)?zhTranslations[key]:value;
   }
   function languageTargets(){
-    const selector='main h1,main h2,main h3,.text-node,.mobile-headline,.desktop-title,.approach-eyebrow,.approach-summary,.approach-button,.fun-fact p,.process-grid strong,.process-grid h3,.process-grid p,.process-footnote,.anyone-process h2,.anyone-process em,.not-gym-intro,.programme-kicker,.shangri-la-approach h2,.shangri-la-approach p,.shangri-la-approach h3,.programme-assessment h2,.programme-assessment p,.anyone-aspect-grid h3,.anyone-aspect-grid p,.footer-instagram,.story-video-selector strong,.story-video-selector span,nav a,.visit-button,.skip-link,dialog h2,dialog p,dialog a';
+    const selector='.plans-intro p,.plans-content p,.plans-content li,main h1,main h2,main h3,.text-node,.mobile-headline,.desktop-title,.approach-eyebrow,.approach-summary,.approach-button,.fun-fact p,.process-grid strong,.process-grid h3,.process-grid p,.process-footnote,.anyone-process h2,.anyone-process em,.not-gym-intro,.programme-kicker,.shangri-la-approach h2,.shangri-la-approach p,.shangri-la-approach h3,.programme-assessment h2,.programme-assessment p,.anyone-aspect-grid h3,.anyone-aspect-grid p,.footer-instagram,.story-video-selector strong,.story-video-selector span,nav a,.visit-button,.skip-link,dialog h2,dialog p,dialog a';
     const candidates=[...document.querySelectorAll(selector)];
     // Translate entire blocks, never nested fragments or containers with controls.
     return candidates.filter(el=>!el.closest('script,style')&&!candidates.some(parent=>parent!==el&&parent.contains(el)));
