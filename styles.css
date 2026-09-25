@@ -433,11 +433,11 @@ body[data-page="resources"] [data-node="758:1479"] .text-node,body[data-page="re
  color:#fff!important;
 }
 
-/* Match the logo's periwinkle blue across branded surfaces. */
+/* Match the Shangri-La programme to the Stay Strong hero's blue gradient. */
 body[data-page="for-anyone"] [data-node="811:1686"],
 body[data-page="index"] [data-node="670:1398"],
 .shangri-la-approach{
- background:#6073be!important;
+ background:radial-gradient(ellipse at 34% 50%,#002e56 0%,#035791 100%)!important;
 }
 
 /* Replace remaining generated blue gradients with the logo blue. */
@@ -956,3 +956,57 @@ body.is-zh .process-grid strong{margin-bottom:14px}
 }
 .home-team-card>.text-node{width:calc(100% - 32px)!important;margin-inline:16px!important}
 .home-team-card>.home-team-role{background:none!important;color:#78551c!important;-webkit-text-fill-color:currentColor!important}
+/* Show the couple together on phones instead of stretching two separate crops. */
+body[data-page="stories"] .story-video-selector{cursor:default}
+body[data-page="stories"] .story-video-selector video{object-fit:contain;background:#25364b}
+@media(max-width:899px){
+ body[data-page="stories"] [data-node="611:996"]{display:none!important}
+ body[data-page="stories"] [data-node="640:1000"]{width:100%!important;padding:0!important;gap:0}
+ body[data-page="stories"] [data-node="611:990"]{width:100%!important;aspect-ratio:1196/842;height:auto!important;min-height:0!important;max-height:none}
+ body[data-page="stories"] [data-node="611:990"] img{width:100%!important;height:100%!important;left:0!important;top:0!important;object-fit:contain!important}
+}
+/* Pauline uses the same card layout and dimensions as Victor. */
+@media(min-width:900px){
+ body[data-page="stories"] .pauline-story-card{left:665px!important;top:0!important}
+}
+body[data-page="stories"] .pauline-story-card video{object-fit:contain;background:#25364b}
+/* White programme CTA and a consistent gold hover for interactive buttons. */
+body .site-page .approach-button[href="about.html"]{
+ background:#fff!important;border-color:#fff!important;color:#002e56!important;
+ --mobile-ink:#002e56;
+}
+body :is(button,.visit-button,.approach-button,.design-node.layout-node:is(a,button)){
+ transition:background-color .18s ease,border-color .18s ease,color .18s ease;
+}
+body button:not(:disabled):not([disabled]):hover,
+body .visit-button:hover,
+body .site-page .approach-button:hover,
+body .site-page .approach-button[href="about.html"]:hover,
+body .site-page .design-node.layout-node:is(a,button):not(:disabled):hover,
+body .site-page a[href*="wa.me"]:hover{
+ background:#c89b4a!important;border-color:#c89b4a!important;color:#002e56!important;
+ --mobile-ink:#002e56;--mobile-accent:#002e56;filter:none;
+}
+body .site-page .design-node.layout-node:is(a,button):not(:disabled):hover>.text-node{
+ color:#002e56!important;-webkit-text-fill-color:#002e56!important;background:none!important;
+}
+/* Large, clearly separated qualifications in Karis's former message area. */
+body #coach-profile .coach-qualifications{
+ background:#fffaf1!important;color:#263238!important;
+ --mobile-ink:#263238;
+ border:2px solid #c89b4a!important;border-radius:20px;
+ padding:28px!important;font-size:28px!important;font-weight:400;
+ line-height:1.55!important;white-space:pre-line;
+ height:auto!important;align-self:start;box-shadow:0 4px 12px #26323814;
+}
+body #coach-profile .coach-qualifications .text-line{display:block;white-space:normal!important;margin-bottom:22px}
+body #coach-profile .coach-qualifications .text-line:first-child{font-size:34px;font-weight:700;color:#263238}
+body #coach-profile .coach-qualifications .text-line:last-child{margin-bottom:0}
+@media(max-width:899px){
+ body #coach-profile .coach-qualifications{order:3;padding:22px!important;font-size:22px!important;line-height:1.6!important}
+ body #coach-profile .coach-qualifications .text-line:first-child{font-size:28px}
+}
+/* Match every member biography to the Stay Strong hero background. */
+body #coach-profile .coach-biography{
+ background:radial-gradient(ellipse at 34% 50%,#002e56 0%,#035791 100%)!important;
+}

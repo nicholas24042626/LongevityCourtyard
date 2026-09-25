@@ -124,6 +124,17 @@ for(const member of memberProfiles){
  pages.push(page);
 }
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return renderingPageSlug==='resources'?{equipment:text}:{href:'resources.html#section-688-984'};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
+// Remove retired quotes, personal messages and experience captions from profiles.
+for(const page of pages.filter(page=>['fitness-team','holistic-team',...memberProfiles.map(member=>member.slug)].includes(page.slug))){
+ if(page.slug==='karis'){
+  const panel=findNode(page.root,'564:2593');
+  const lines=['Karis Liow Ying Xin','Diploma in Nutrition, Health & Wellness',"Bachelor's Degree in Psychology & Journalism",'Currently pursuing a Specialist Diploma in Sports Science and Wellness'];
+  Object.assign(panel,{id:'karis-qualifications',teamPart:'coach-qualifications',text:lines.join('\n\n'),lines,style:{fontFamily:'Source Sans 3',fontSize:'28px',lineHeight:'1.5',color:'#263238'}});
+ }
+ const removed=new Set(['564:2593','564:2627','564:2595','564:2628','564:2599','564:2632','564:2598','564:2631']);
+ const prune=node=>{node.children=node.children.filter(child=>!removed.has(child.id));node.children.forEach(prune);};
+ prune(page.root);
+}
 // Complete the homepage team using the same portraits and copy as their profiles.
 const homeCoaches=findNode(pages.find(p=>p.slug==='index').root,'811:1754');
 for(const member of memberProfiles){

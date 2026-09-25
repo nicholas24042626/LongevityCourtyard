@@ -1,5 +1,7 @@
 // Translate complete text blocks; retain English names and brands.
 window.LCChinese = {
+  "Watch Pauline share her experience at Longevity Courtyard.": "观看 Pauline 分享她在 Longevity Courtyard 的体验。",
+  "Pauline shares her experience at Longevity Courtyard": "Pauline 分享她在 Longevity Courtyard 的体验",
   "WHO WE ARE": "关于我们",
   "Life at Longevity Courtyard": "在Longevity Courtyard的生活",
   "Watch Victor share his experience at Longevity Courtyard.": "观看 Victor 分享他在Longevity Courtyard的体验。",

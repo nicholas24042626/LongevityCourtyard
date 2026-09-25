@@ -197,23 +197,19 @@
   }
   if(document.body.dataset.page==='stories'){
     const storyFrame=document.querySelector('[data-node="828:2511"]');
-    const mainVideo=document.querySelector('[data-node="611:997"] video');
-    if(storyFrame&&mainVideo){
-      const selector=document.createElement('button');
-      selector.type='button';
-      selector.className='story-video-selector';
-      selector.setAttribute('aria-label','Play Seng Kek and Lit Seang battling Parkinson’s Disease');
-      selector.innerHTML='<strong>Seng Kek &amp; Lit Seang</strong><span>Battling Parkinson’s Disease</span><video muted playsinline preload="metadata" poster="assets/images/2795cd699951266680eb34059ae9937e9c67df0e.png"><source src="assets/videos/74a7134a639e9dd640552d0ba7f4cc06a8bbae0c.mp4" type="video/mp4"></video><span>Watch video</span>';
-      selector.addEventListener('click',()=>{
-        const source=mainVideo.querySelector('source');
-        if(!source)return;
-        source.src='assets/videos/74a7134a639e9dd640552d0ba7f4cc06a8bbae0c.mp4';
-        mainVideo.poster='assets/images/2795cd699951266680eb34059ae9937e9c67df0e.png';
-        mainVideo.load();
-        mainVideo.play().catch(()=>{});
-        mainVideo.focus({preventScroll:true});
-      });
-      storyFrame.append(selector);
+    const victor=storyFrame?.querySelector('[data-node="591:516"]');
+    if(victor){
+      // Share Victor's dimensions and title/video/description layout exactly.
+      const card=victor.cloneNode(true);
+      card.classList.add('pauline-story-card');
+      card.querySelector('[data-node="591:518"]').textContent='Pauline';
+      card.querySelector('[data-node="591:521"]').textContent='Watch Pauline share her experience at Longevity Courtyard.';
+      const video=card.querySelector('video');
+      video.removeAttribute('poster');
+      video.setAttribute('aria-label','Pauline shares her experience at Longevity Courtyard');
+      video.querySelector('source').src='assets/videos/Pauline.mp4#t=0.1';
+      [card,...card.querySelectorAll('[data-node]')].forEach(node=>{node.dataset.node='pauline-'+node.dataset.node;node.removeAttribute('id');});
+      storyFrame.append(card);
     }
   }
   if(['for-anyone','index'].includes(document.body.dataset.page)){
