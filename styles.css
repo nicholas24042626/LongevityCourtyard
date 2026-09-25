@@ -1038,3 +1038,5 @@ body .site-page .approach-button:not([href="about.html"]):not([href*="wa.me"]):n
 body .site-page .design-node.layout-node[href*="about.html"]:not(:hover):not(.site-footer *){
  background:var(--stay-strong-blue)!important;
 }
+/* Preserve the footer's original periwinkle independently of section colours. */
+body .site-page .site-footer{background:#6073be!important}
