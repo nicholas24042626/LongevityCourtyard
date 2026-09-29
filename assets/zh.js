@@ -4,7 +4,7 @@ window.LCChinese = {
   "Pauline shares her experience at Longevity Courtyard": "Pauline 分享她在 Longevity Courtyard 的体验",
   "WHO WE ARE": "关于我们",
   "Life at Longevity Courtyard": "在Longevity Courtyard的生活",
-  "Watch Victor share his experience at Longevity Courtyard.": "观看 Victor 分享他在Longevity Courtyard的体验。",
+  "Watch Victor share his experience at Longevity Courtyard.": "观看 Victor 分享他在 Longevity Courtyard 的体验。",
   "Longevity Courtyard photos": "Longevity Courtyard活动照片",
   "Previous photo": "上一张照片",
   "Next photo": "下一张照片",
@@ -563,4 +563,42 @@ Object.assign(window.LCChinese,{
   "Terms and conditions apply.": "须遵守条款与条件。",
   "Not sure which plan to choose?": "不确定该选哪个配套？",
   "Speak with our team. We can help you understand the options.": "欢迎联系我们的团队，了解各个配套。"
+});
+// Current member biographies, specialties and qualifications.
+Object.assign(window.LCChinese,{
+  "Emily is a Fitness Associate at Longevity Courtyard, supporting members as they make movement part of everyday life. Her focus is on building a steady exercise routine and finding encouragement in small achievements. From getting started to keeping up the momentum, the focus is on growing stronger and feeling more confident in daily activities.": "Emily 是 Longevity Courtyard 的健身助理，陪伴学员将运动融入日常生活。她着重帮助学员建立规律的运动习惯，并从每一点进步中获得鼓励。无论是刚开始运动，还是希望持续坚持，她都支持学员逐步增强力量，更有信心地应对日常活动。",
+  "Fion is a Fitness Associate at Longevity Courtyard, supporting members on their active ageing journey. She puts connection and movement confidence at the heart of exercise. With a focus on feeling more at ease during each session, she encourages members to take part, find their rhythm, and enjoy working towards more comfortable everyday movement together.": "Fion 是 Longevity Courtyard 的健身助理，陪伴学员踏上活跃乐龄之旅。她重视人与人之间的交流，以及运动时的信心。她希望学员在每堂课中都能感到自在，鼓励大家积极参与、找到适合自己的节奏，一起让日常活动变得更轻松。",
+  "Dawn is the Medical Coach at Longevity Courtyard. Her role brings a health-aware perspective to staying active, with an emphasis on understanding your body and recognising your starting point. The focus is on helping members ask questions, communicate their concerns, and approach movement with greater awareness as they work towards everyday wellbeing.": "Dawn 是 Longevity Courtyard 的医疗教练，从关注健康的角度支持学员保持活力。她着重帮助学员了解自己的身体与目前的状况，鼓励大家提出问题、表达顾虑，以更了解自身需要的方式参与运动，逐步迈向更健康的日常生活。",
+  "Karis is the Nutrition Coach at Longevity Courtyard. Her approach connects eating well with the practical rhythms of daily life, from familiar meals to habits that are easier to maintain. The focus is on making nutrition approachable and helping members think about how everyday food choices can complement an active lifestyle and their personal wellbeing goals.": "Karis 是 Longevity Courtyard 的营养教练。她将均衡饮食与日常生活相结合，从熟悉的餐食着手，建立容易坚持的饮食习惯。她致力于让营养知识更容易理解，帮助学员认识日常饮食选择如何配合活跃的生活方式，并支持个人的健康目标。",
+  "“Strength grows with every small step you take for yourself.”": "“为自己踏出的每一小步，都能让力量逐渐增长。”",
+  "“Moving together makes every step feel a little more possible.”": "“一起运动，让每一步都多一份信心。”",
+  "“Understanding your body is the first step towards moving with confidence.”": "“了解自己的身体，是自信运动的第一步。”",
+  "“Eating well starts with small choices that fit your everyday life.”": "“吃得健康，从适合日常生活的小选择开始。”",
+  "Everyday Strength": "日常肌力",
+  "Steady Progress": "稳步进步",
+  "Active Living": "活力生活",
+  "Movement Confidence": "运动信心",
+  "Connection": "交流与连结",
+  "Body Awareness": "身体觉察",
+  "Guided Movement": "专业指导运动",
+  "Wellbeing": "身心健康",
+  "Balanced Eating": "均衡饮食",
+  "Everyday Habits": "日常习惯",
+  "Karis Liow Ying XinDiploma in Nutrition, Health & WellnessBachelor's Degree in Psychology & JournalismCurrently pursuing a Specialist Diploma in Sports Science and Wellness": "Karis Liow Ying Xin\n营养、健康与保健文凭\n心理学与新闻学学士学位\n目前正在修读运动科学与健康专科文凭",
+  "Soh Tiong Eng FionSTPMGymtonic Certificate": "Soh Tiong Eng Fion\n马来西亚高级学校文凭（STPM）\nGymtonic 证书"
+});
+
+Object.assign(window.LCChinese, {
+  "Daniel PhuaDiploma in Physical TherapyCertified Personal Trainer from National Council on Strength and Fitness (NCSF)Certified Sport Massage TherapistCertified TRX Suspension Trainer": "Daniel Phua\n物理治疗文凭\n美国国家力量与体能协会（NCSF）认证私人教练\n认证运动按摩治疗师\n认证 TRX 悬吊训练教练"
+});
+Object.assign(window.LCChinese, {
+ "Profile details coming soon.": "个人介绍即将更新。",
+ "Meet Gilbert, a member of the Longevity Courtyard fitness team. More profile details will be added soon.": "Gilbert 是 Longevity Courtyard 健身团队的一员。更多个人介绍即将更新。",
+ "Meet Justin, a member of the Longevity Courtyard fitness team. More profile details will be added soon.": "Justin 是 Longevity Courtyard 健身团队的一员。更多个人介绍即将更新。"
+});
+Object.assign(window.LCChinese, {
+ "Intern": "实习生",
+ "Intern at Longevity Courtyard": "Longevity Courtyard 实习生",
+ "Justyn is an intern with the Longevity Courtyard fitness team.": "Justyn 是 Longevity Courtyard 健身团队的实习生。",
+ "JustynInternLongevity Courtyard Fitness Team": "Justyn\n实习生\nLongevity Courtyard 健身团队"
 });

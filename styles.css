@@ -1128,3 +1128,18 @@ body:is([data-page="fitness-team"],[data-page="holistic-team"]) #coach-profile .
  body[data-page="holistic-team"] #coach-profile .coach-biography{padding-bottom:0!important}
  body[data-page="holistic-team"] #coach-profile .coach-bio-portrait{width:min(100%,360px)!important;height:440px!important;max-height:none!important;margin-bottom:0!important;order:10!important}
 }
+/* Allow all eight members to fit in the profile selector. */
+#coach-profile .coach-links{display:flex!important;flex-wrap:wrap;gap:16px!important;width:100%!important;height:auto!important}
+#coach-profile .coach-links>[data-coach-selector]{position:relative!important;left:auto!important;top:auto!important;flex:0 0 85px}
+@media(max-width:899px){#coach-profile .coach-links>[data-coach-selector]{flex-basis:64px}}
+body[data-page="gilbert"] #coach-profile .coach-bio-portrait img{object-fit:contain!important}
+/* Share the same circular coach selector on Ice's and every other profile. */
+#coach-profile .coach-links>[data-coach-selector]{width:85px!important;height:85px!important;border-radius:50%!important;overflow:hidden!important;padding:0!important;min-height:0}
+@media(min-width:900px){
+ body[data-page="holistic-team"] #coach-profile .coach-switcher{width:100%!important;height:auto!important;display:flex;flex-direction:column;gap:16px;padding-bottom:32px}
+ body[data-page="holistic-team"] #coach-profile .coach-switcher>.design-node{position:relative!important;top:auto!important;left:auto!important;height:auto!important}
+ body[data-page="holistic-team"] #coach-profile .coach-links{max-width:100%;align-items:center}
+}
+@media(max-width:899px){
+ #coach-profile .coach-links>[data-coach-selector]{width:64px!important;height:64px!important}
+}

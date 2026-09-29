@@ -55,7 +55,13 @@
         originalContent.set(el,original);
       }
       const translated=translateString(original.text);
-      if(chinese&&translated!==original.text)el.textContent=translated;
+      if(chinese&&translated!==original.text){
+        if(el.classList.contains('coach-qualifications')){
+          el.replaceChildren(...translated.split('\n').map(line=>{
+            const span=document.createElement('span');span.className='text-line';span.textContent=line;return span;
+          }));
+        }else el.textContent=translated;
+      }
       else el.innerHTML=original.html;
       original.rendered=el.innerHTML;
     });
@@ -147,7 +153,7 @@
     if(!link||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0||location.protocol==='file:')return;
     event.preventDefault();changeCoach(new URL(link.href));
   });
-  window.addEventListener('popstate',()=>{if(document.querySelector('#coach-profile')&&/\/(fitness-team|holistic-team|emily|fion|dawn|karis)\.html$/.test(location.pathname))changeCoach(new URL(location.href),false)});
+  window.addEventListener('popstate',()=>{if(document.querySelector('#coach-profile')&&/\/(fitness-team|holistic-team|emily|fion|dawn|karis|gilbert|justin)\.html$/.test(location.pathname))changeCoach(new URL(location.href),false)});
   dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
   dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');opener?.focus()});

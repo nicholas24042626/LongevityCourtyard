@@ -55,7 +55,9 @@ const memberProfiles=[
  {slug:'emily',title:'Emily | Fitness Team',name:'Ng Swee Gek Emily',first:'Emily',role:'Fitness Associate',image:'assets/images/Emily.png'},
  {slug:'fion',title:'Fion | Fitness Team',name:'Soh Tiong Eng Fion',first:'Fion',role:'Fitness Associate',image:'assets/images/Fion.png'},
  {slug:'dawn',title:'Dawn | Fitness Team',name:'Dawn',first:'Dawn',role:'Medical Coach',image:'assets/images/Dawn.png'},
- {slug:'karis',title:'Karis | Fitness Team',name:'Karis',first:'Karis',role:'Nutrition Coach',image:'assets/images/Karis.png'}
+ {slug:'karis',title:'Karis | Fitness Team',name:'Karis',first:'Karis',role:'Nutrition Coach',image:'assets/images/Karis.png'},
+ {slug:'gilbert',title:'Gilbert | Fitness Team',name:'Gilbert',first:'Gilbert',role:'',image:'assets/images/member-placeholder.svg'},
+ {slug:'justin',title:'Justyn | Fitness Team',name:'Justyn',first:'Justyn',role:'Intern',image:'assets/images/Justin.png'}
 ];
 const fitnessPage=pages.find(p=>p.slug==='fitness-team');
 // Draft profile copy based on the team's listed roles, without unverified credentials.
@@ -93,6 +95,9 @@ const memberStories={
   message:'Start with the meals you know and enjoy. Share your routine and questions with our team, and explore simple ways to make balanced eating part of your day. Visit us to learn how nutrition support can complement your movement and wellbeing journey.'
  }
 };
+for(const name of ['Gilbert','Justin'])memberStories[name.toLowerCase()]={motto:'Profile details coming soon.',specialties:['','',''],background:`Meet ${name}, a member of the Longevity Courtyard fitness team. More profile details will be added soon.`,highlight:'',quotes:[],message:''};
+memberStories.justin.motto='Intern at Longevity Courtyard';
+memberStories.justin.background='Justyn is an intern with the Longevity Courtyard fitness team.';
 for(const member of memberProfiles){
  const page=JSON.parse(JSON.stringify(fitnessPage));
  Object.assign(page,{slug:member.slug,title:member.title,navSlug:'fitness-team'});
@@ -122,14 +127,22 @@ for(const member of memberProfiles){
  // Anchor the head at the top; crop only the lower body in the hero frame.
  const heroPortrait=findNode(page.root,'564:2566');
  if(heroPortrait?.image){heroPortrait.image.style.objectFit='cover';heroPortrait.image.style.objectPosition='center top';}
+ if(['gilbert','justin'].includes(member.slug)){
+  const prune=node=>{node.children=node.children.filter(child=>child.id!=='564:2574'&&!(member.slug==='gilbert'&&child.id==='564:2570'));node.children.forEach(prune);};
+  prune(page.root);
+ }
  pages.push(page);
 }
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return renderingPageSlug==='resources'?{equipment:text}:{href:'resources.html#section-688-984'};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
 // Remove retired quotes, personal messages and experience captions from profiles.
 for(const page of pages.filter(page=>['fitness-team','holistic-team',...memberProfiles.map(member=>member.slug)].includes(page.slug))){
- if(['karis','fitness-team'].includes(page.slug)){
+ if(['karis','fitness-team','fion','justin'].includes(page.slug)){
   const panel=findNode(page.root,'564:2593');
-  const lines=page.slug==='karis'
+  const lines=page.slug==='justin'
+   ? ['Justyn','Intern','Longevity Courtyard Fitness Team']
+   : page.slug==='fion'
+   ? ['Soh Tiong Eng Fion','STPM','Gymtonic Certificate']
+   : page.slug==='karis'
    ? ['Karis Liow Ying Xin','Diploma in Nutrition, Health & Wellness',"Bachelor's Degree in Psychology & Journalism",'Currently pursuing a Specialist Diploma in Sports Science and Wellness']
    : ['Daniel Phua','Diploma in Physical Therapy','Certified Personal Trainer from National Council on Strength and Fitness (NCSF)','Certified Sport Massage Therapist','Certified TRX Suspension Trainer'];
   Object.assign(panel,{id:`${page.slug}-qualifications`,teamPart:'coach-qualifications',text:lines.join('\n\n'),lines,style:{fontFamily:'Source Sans 3',fontSize:'28px',lineHeight:'1.5',color:'#263238'}});
@@ -225,7 +238,7 @@ function render(n,depth=0,inLink=false){
  if(n.video){inner=`<video controls playsinline preload="none" poster="${n.image.src}" aria-label="${escape(n.image.alt)}"><source src="${n.video}" type="video/mp4">Your browser does not support video playback.</video>`;}
  else if(n.image){inner=`<div class="image-crop" aria-hidden="true"><img src="${n.image.src}" alt="" loading="${depth<3?'eager':'lazy'}" decoding="async" style="${escape(css(n.image.style))}"></div>`;if(n.overlay)inner+=`<div class="image-overlay" style="background:${escape(n.overlay)}"></div>`;if(!n.children.length&&!act)attrs+=` role="img" aria-label="${escape(n.image.alt)}"`;}
  if(n.paths)inner+=`<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 ${n.w||1} ${n.h||1}" overflow="visible">${n.paths.map(p=>`<path d="${p.d}" fill="${p.fill}" fill-rule="${p.rule||'nonzero'}"/>`).join('')}</svg>`;
- if(isText)inner+=n.lines?n.lines.map(line=>`<span class="text-line">${escape(line)}</span>`).join(''):escape(n.text);
+ if(isText)inner+=n.lines?n.lines.map(line=>`<span class="text-line">${escape(line)}</span>`).join(n.id==='591:521'?' ':''):escape(n.text);
  if(selectorGroup){
   const team=[
    {name:'Daniel Phua',href:'fitness-team.html#coach-profile',image:'assets/images/189dd86bce5f226b338fa454f55b11b13070c53d.png'},
@@ -233,7 +246,9 @@ function render(n,depth=0,inLink=false){
    {name:'Ng Swee Gek Emily',href:'emily.html#coach-profile',image:'assets/images/Emily.png'},
    {name:'Soh Tiong Eng Fion',href:'fion.html#coach-profile',image:'assets/images/Fion.png'},
    {name:'Dawn',href:'dawn.html#coach-profile',image:'assets/images/Dawn.png'},
-   {name:'Karis',href:'karis.html#coach-profile',image:'assets/images/Karis.png'}
+   {name:'Karis',href:'karis.html#coach-profile',image:'assets/images/Karis.png'},
+   {name:'Gilbert',href:'gilbert.html#coach-profile',image:'assets/images/member-placeholder.svg'},
+   {name:'Justyn',href:'justin.html#coach-profile',image:'assets/images/Justin.png'}
   ];
   inner+=team.map((member,index)=>`<a class="design-node coach-standard-selector" style="left:${index*105}px;top:0;width:85px;height:85px;--mobile-order:${index}" data-coach-selector href="${member.href}" aria-label="View ${member.name}'s profile" title="${member.name}"><img class="coach-selector-photo" src="${member.image}" alt="" aria-hidden="true" decoding="async"></a>`).join('');
  }else inner+=n.children.map(c=>render(c,depth+1,inLink||!!act)).join('');
