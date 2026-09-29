@@ -1086,3 +1086,45 @@ body[data-page="plans"] .plans-intro>h2{position:relative;z-index:1;pointer-even
 @media(max-width:899px){
  body[data-page="plans"] .plans-intro{min-height:400px;padding-bottom:80px}
 }
+/* Larger portraits in the four associate biographies, anchored above the head. */
+@media(min-width:900px){
+ .member-profile [data-node="582:486"]{grid-template-columns:minmax(0,480px) minmax(0,1fr)}
+ body #coach-profile.member-profile .coach-bio-portrait{height:640px!important;max-height:none!important;width:100%!important}
+}
+body #coach-profile.member-profile .coach-bio-portrait img{
+ object-fit:cover!important;object-position:center top!important;
+ width:100%!important;height:100%!important;left:0!important;top:0!important;
+}
+@media(max-width:899px){
+ body #coach-profile.member-profile .coach-bio-portrait{width:min(100%,360px)!important;height:440px!important;max-height:none!important}
+}
+/* Finish the four biography portraits flush with the blue section edge. */
+body #coach-profile.member-profile .coach-biography{padding-bottom:0!important}
+body #coach-profile.member-profile .coach-bio-portrait-group{align-self:end}
+body #coach-profile.member-profile .coach-bio-portrait{margin-bottom:0!important}
+@media(min-width:900px){
+ body #coach-profile.member-profile .coach-message-group{padding-bottom:32px}
+}
+@media(max-width:899px){
+ /* Keep Karis's qualifications above her portrait so the photo finishes the section. */
+ body #coach-profile.member-profile .coach-bio-portrait{order:10!important}
+}
+/* Daniel's qualifications use the same flowing profile grid as Karis. */
+body[data-page="fitness-team"] #coach-profile.member-profile{display:grid!important}
+@media(max-width:899px){body[data-page="fitness-team"] #coach-profile.member-profile{display:flex!important}}
+/* Daniel and Ice use the same large biography portrait frames as the team. */
+body:is([data-page="fitness-team"],[data-page="holistic-team"]) #coach-profile .coach-bio-portrait img{
+ width:125%!important;height:125%!important;left:-12.5%!important;top:-25%!important;
+ object-fit:cover!important;object-position:center top!important;
+}
+@media(min-width:900px){
+ body[data-page="holistic-team"] .site-page{height:auto!important;display:block}
+ body[data-page="holistic-team"] .site-page>.section{position:relative!important;top:auto!important;left:auto!important}
+ body[data-page="holistic-team"] #coach-profile{height:1636px!important}
+ body[data-page="holistic-team"] .coach-biography{height:918px!important}
+ body[data-page="holistic-team"] #coach-profile .coach-bio-portrait{left:100px!important;top:278px!important;width:480px!important;height:640px!important;max-height:none!important}
+}
+@media(max-width:899px){
+ body[data-page="holistic-team"] #coach-profile .coach-biography{padding-bottom:0!important}
+ body[data-page="holistic-team"] #coach-profile .coach-bio-portrait{width:min(100%,360px)!important;height:440px!important;max-height:none!important;margin-bottom:0!important;order:10!important}
+}
