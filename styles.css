@@ -1144,3 +1144,25 @@ body[data-page="gilbert"] #coach-profile .coach-bio-portrait img{object-fit:cove
  #coach-profile .coach-links>[data-coach-selector]{width:64px!important;height:64px!important}
 }
 body .site-page .audience-badge{display:flex;align-items:center;justify-content:center;width:120px!important;min-height:44px;padding:0 16px!important;--mobile-ink:#002e56;color:#002e56!important;background:#fff!important}
+/* Compact shared footer: content determines its height. */
+body .site-page .site-footer{height:auto!important;padding:36px 64px 24px!important;display:grid;grid-template-columns:1fr auto;gap:24px 32px;overflow:visible!important}
+body .site-footer .design-node,body .site-footer .footer-instagram{position:relative!important;top:auto!important;left:auto!important;width:auto!important;height:auto!important;margin:0;max-width:100%}
+body .site-footer [data-node="537:542"]{grid-column:1 / -1;order:0;display:grid;grid-template-columns:2fr 1fr 1.4fr 1fr 1.3fr;gap:28px;padding:0}
+body .site-footer [data-node="537:542"]>.layout-node{display:flex;flex-direction:column;gap:12px;padding:0}
+body .site-footer .text-node{font-size:18px!important;line-height:1.45!important;white-space:normal}
+body .site-footer .text-line{white-space:normal;display:block}
+body .site-footer :is([data-node="537:544"],[data-node="537:547"],[data-node="537:553"],[data-node="537:562"],[data-node="537:557"]){font-size:24px!important;margin-bottom:4px}
+body .site-footer [data-node="537:535"]{order:1;font-size:14px!important;align-self:center}
+body .site-footer [data-node="537:536"]{order:2;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+body .site-footer [data-node="537:536"] .text-node{font-size:14px!important}
+body .site-footer :is([data-node="537:541"],[data-node="537:559"],[data-node="537:560"]){display:none!important}
+body .site-footer .footer-instagram{font-size:18px;line-height:1.45}
+@media(max-width:899px){
+ body .site-page .site-footer{padding:28px 20px 20px!important;grid-template-columns:1fr;gap:20px}
+ body .site-footer [data-node="537:542"]{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+ body .site-footer [data-node="537:543"]{grid-column:1 / -1}
+ body .site-footer [data-node="537:542"]>.layout-node{gap:8px}
+ body .site-footer [data-node="537:542"] :is(a,button){min-height:44px;display:flex;align-items:center}
+ body .site-footer [data-node="537:536"]{gap:4px 16px}
+ body .site-footer [data-node="537:536"] :is(a,button){min-height:44px}
+}

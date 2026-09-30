@@ -1,6 +1,16 @@
 (() => {
   const updateScale=()=>document.documentElement.style.setProperty('--page-scale',window.innerWidth>=900?document.documentElement.clientWidth/1440:1);
   window.addEventListener('resize',updateScale);updateScale();
+  // Absolute desktop pages must end at the now content-sized footer.
+  const fitFooter=()=>{
+    const main=document.querySelector('main'),footer=main?.querySelector('.site-footer');
+    if(footer&&innerWidth>=900&&getComputedStyle(footer).position==='absolute'){
+      main.style.setProperty('height',`${footer.offsetTop+footer.offsetHeight}px`,'important');
+    }else main?.style.removeProperty('height');
+  };
+  const footerObserver=new ResizeObserver(fitFooter);
+  const observeFooter=()=>{footerObserver.disconnect();const footer=document.querySelector('.site-footer');if(footer)footerObserver.observe(footer);fitFooter();};
+  observeFooter();window.addEventListener('resize',fitFooter);
   const toggle=document.querySelector('.menu-toggle');const nav=document.querySelector('#main-navigation');
   function closeMenu(){nav.classList.remove('open');document.body.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label',document.documentElement.lang==='zh-Hans'?translateString('Open navigation'):'Open navigation')}
   toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');document.body.classList.toggle('menu-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',document.documentElement.lang==='zh-Hans'?translateString(open?'Close navigation':'Open navigation'):(open?'Close navigation':'Open navigation'))});
@@ -130,6 +140,7 @@
       const update=()=>{
         document.querySelectorAll('[data-photo-carousel]').forEach(carousel=>photoCarouselControllers.get(carousel)?.());
         document.querySelector('main').replaceWith(replacement);
+        observeFooter();
         initPhotoCarousels(replacement);
         document.title=parsed.title;document.body.dataset.page=parsed.body.dataset.page;
         if(push)history.pushState({coach:true},'',url.pathname+url.hash);
