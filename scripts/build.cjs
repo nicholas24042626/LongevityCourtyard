@@ -67,7 +67,7 @@ const memberProfiles=[
  {slug:'fion',title:'Fion | Fitness Team',name:'Soh Tiong Eng Fion',first:'Fion',role:'Fitness Associate',image:'assets/images/Fion.png'},
  {slug:'dawn',title:'Dawn | Fitness Team',name:'Dawn',first:'Dawn',role:'Medical Coach',image:'assets/images/Dawn.png'},
  {slug:'karis',title:'Karis | Fitness Team',name:'Karis',first:'Karis',role:'Nutrition Coach',image:'assets/images/Karis.png'},
- {slug:'gilbert',title:'Gilbert | Fitness Team',name:'Gilbert',first:'Gilbert',role:'',image:'assets/images/Gilbert.png'},
+ {slug:'gilbert',title:'Gilbert | Fitness Team',name:'Gilbert',first:'Gilbert',role:'Fitness Associate',image:'assets/images/Gilbert.png'},
  {slug:'justin',title:'Justyn | Fitness Team',name:'Justyn',first:'Justyn',role:'Sports Health Intern',image:'assets/images/Justin.png'}
 ];
 const fitnessPage=pages.find(p=>p.slug==='fitness-team');
@@ -109,7 +109,10 @@ const memberStories={
 for(const name of ['Gilbert','Justin'])memberStories[name.toLowerCase()]={motto:'Profile details coming soon.',specialties:['','',''],background:`Meet ${name}, a member of the Longevity Courtyard fitness team. More profile details will be added soon.`,highlight:'',quotes:[],message:''};
 memberStories.justin.motto='“Every small step towards staying active is a step towards a stronger tomorrow.”';
 memberStories.justin.specialties=['Active Living','Everyday Movement','Healthy Habits'];
-memberStories.justin.background='Justyn is a Sports Health Intern with the Longevity Courtyard fitness team and is currently pursuing a Diploma in Sports Health.';
+memberStories.justin.background='Justyn is a Sports Health Intern at Longevity Courtyard, currently pursuing a Diploma in Sports Health. His internship is an opportunity to connect his studies with everyday movement and learn alongside the fitness team. As he develops his knowledge and practical experience, he is discovering how encouragement, regular activity, and small steps forward can help older adults build confidence in staying active.';
+memberStories.gilbert.motto='“Keep showing up for yourself. Each day of movement is a chance to feel stronger and more confident.”';
+memberStories.gilbert.specialties=['Steady Strength','Movement Confidence','Active Ageing'];
+memberStories.gilbert.background='Gilbert is a Fitness Associate at Longevity Courtyard and a senior who helps with fitness at Gymtonic. As a fellow senior, he brings a shared perspective to the journey of staying active as we age. His involvement is a reminder that older adults can play a meaningful part in supporting one another, making exercise a chance to connect, encourage each other, and keep moving together.';
 for(const member of memberProfiles){
  const page=JSON.parse(JSON.stringify(fitnessPage));
  Object.assign(page,{slug:member.slug,title:member.title,navSlug:'fitness-team'});
@@ -139,10 +142,6 @@ for(const member of memberProfiles){
  // Anchor the head at the top; crop only the lower body in the hero frame.
  const heroPortrait=findNode(page.root,'564:2566');
  if(heroPortrait?.image){heroPortrait.image.style.objectFit='cover';heroPortrait.image.style.objectPosition='center top';}
- if(member.slug==='gilbert'){
-  const prune=node=>{node.children=node.children.filter(child=>child.id!=='564:2574'&&!(member.slug==='gilbert'&&child.id==='564:2570'));node.children.forEach(prune);};
-  prune(page.root);
- }
  pages.push(page);
 }
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return renderingPageSlug==='resources'?{equipment:text}:{href:'resources.html#section-688-984'};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}

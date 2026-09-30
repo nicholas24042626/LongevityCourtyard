@@ -617,3 +617,13 @@ Object.assign(window.LCChinese, {
  "-------- BODY COMPOSITION ASSESSMENT": "-------- 身体成分评估"
 });
 Object.assign(window.LCChinese, {"For YOU": "为您而设"});
+
+Object.assign(window.LCChinese, {
+ "“Keep showing up for yourself. Each day of movement is a chance to feel stronger and more confident.”": "“坚持为自己迈出一步。每天动一动，让自己更强健、更有信心。”",
+ "Steady Strength": "稳步增强肌力",
+ "Gilbert is a Fitness Associate with the Longevity Courtyard fitness team.": "Gilbert 是 Longevity Courtyard 健身团队的健身助理。"
+});
+Object.assign(window.LCChinese, {
+  "Justyn is a Sports Health Intern at Longevity Courtyard, currently pursuing a Diploma in Sports Health. His internship is an opportunity to connect his studies with everyday movement and learn alongside the fitness team. As he develops his knowledge and practical experience, he is discovering how encouragement, regular activity, and small steps forward can help older adults build confidence in staying active.": "Justyn 是 Longevity Courtyard 的运动健康实习生，目前正在修读运动健康文凭。通过实习，他有机会将课堂所学与日常运动相结合，并向健身团队学习。在积累知识与实践经验的过程中，他也逐步认识到，鼓励、规律活动和一点一滴的进步，如何帮助长者建立保持活力的信心。",
+  "Gilbert is a Fitness Associate at Longevity Courtyard and a senior who helps with fitness at Gymtonic. As a fellow senior, he brings a shared perspective to the journey of staying active as we age. His involvement is a reminder that older adults can play a meaningful part in supporting one another, making exercise a chance to connect, encourage each other, and keep moving together.": "Gilbert 是 Longevity Courtyard 的健身助理，也是一位在 Gymtonic 协助健身活动的长者。同为乐龄人士，他以长者的视角参与保持活力的旅程。他的参与让我们看到，长者也能在彼此支持的过程中发挥重要作用，让运动成为交流、互相鼓励和一起保持活力的机会。"
+});
