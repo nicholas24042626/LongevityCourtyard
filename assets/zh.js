@@ -602,3 +602,18 @@ Object.assign(window.LCChinese, {
  "Justyn is an intern with the Longevity Courtyard fitness team.": "Justyn 是 Longevity Courtyard 健身团队的实习生。",
  "JustynInternLongevity Courtyard Fitness Team": "Justyn\n实习生\nLongevity Courtyard 健身团队"
 });
+Object.assign(window.LCChinese, {
+ "Titisa \"Ice\" JeamsakulDiploma in Dance (Pedagogy) – Nanyang Academy of Fine Arts (NAFA), SingaporeBachelor of Arts in Contemporary Dance (First-Class Honours) – London Contemporary Dance School (LCDS), United Kingdom": "Titisa \"Ice\" Jeamsakul\n舞蹈（教学法）文凭 – 新加坡南洋艺术学院（NAFA）\n当代舞蹈文学士（一等荣誉）– 英国伦敦当代舞蹈学院（LCDS）"
+});
+Object.assign(window.LCChinese, {
+ "Sports Health Intern": "运动健康实习生",
+ "“Every small step towards staying active is a step towards a stronger tomorrow.”": "“保持活力的每一小步，都是迈向更强健明天的一步。”",
+ "Everyday Movement": "日常运动",
+ "Healthy Habits": "健康习惯",
+ "Justyn is a Sports Health Intern with the Longevity Courtyard fitness team and is currently pursuing a Diploma in Sports Health.": "Justyn 是 Longevity Courtyard 健身团队的运动健康实习生，目前正在修读运动健康文凭。",
+ "JustynCurrently pursuing Diploma in Sports Health": "Justyn\n目前正在修读运动健康文凭"
+});
+Object.assign(window.LCChinese, {
+ "-------- BODY COMPOSITION ASSESSMENT": "-------- 身体成分评估"
+});
+Object.assign(window.LCChinese, {"For YOU": "为您而设"});

@@ -42,6 +42,17 @@ function syncSeniorsTeamSection(){
  Object.assign(target,synced,{id,x,y});
 }
 syncSeniorsTeamSection();
+for(const page of pages){
+ for(const id of ['668:633','811:1640']){
+  const badge=findNode(page.root,id);
+  if(badge)Object.assign(badge,{name:'For YOU',text:'For YOU',lines:['For YOU'],children:[],w:120,h:44,teamPart:'audience-badge',style:{background:'#fff',color:'#002e56',borderRadius:'24px',fontFamily:'Source Sans 3',fontSize:'20px',fontWeight:700,lineHeight:'44px',textAlign:'center'}});
+ }
+}
+const tanitaLabel=findNode(pages.find(page=>page.slug==='resources').root,'688:1098');
+if(tanitaLabel){
+ const text='-------- BODY COMPOSITION ASSESSMENT';
+ Object.assign(tanitaLabel,{text,name:text,lines:[text],w:560});
+}
 // Remove retired homepage callouts from the generated markup in both languages.
 for(const page of pages.filter(page=>['index','for-anyone'].includes(page.slug))){
  const removed=new Set(['668:1286','811:1625','669:1395','811:1683']);
@@ -56,8 +67,8 @@ const memberProfiles=[
  {slug:'fion',title:'Fion | Fitness Team',name:'Soh Tiong Eng Fion',first:'Fion',role:'Fitness Associate',image:'assets/images/Fion.png'},
  {slug:'dawn',title:'Dawn | Fitness Team',name:'Dawn',first:'Dawn',role:'Medical Coach',image:'assets/images/Dawn.png'},
  {slug:'karis',title:'Karis | Fitness Team',name:'Karis',first:'Karis',role:'Nutrition Coach',image:'assets/images/Karis.png'},
- {slug:'gilbert',title:'Gilbert | Fitness Team',name:'Gilbert',first:'Gilbert',role:'',image:'assets/images/member-placeholder.svg'},
- {slug:'justin',title:'Justyn | Fitness Team',name:'Justyn',first:'Justyn',role:'Intern',image:'assets/images/Justin.png'}
+ {slug:'gilbert',title:'Gilbert | Fitness Team',name:'Gilbert',first:'Gilbert',role:'',image:'assets/images/Gilbert.png'},
+ {slug:'justin',title:'Justyn | Fitness Team',name:'Justyn',first:'Justyn',role:'Sports Health Intern',image:'assets/images/Justin.png'}
 ];
 const fitnessPage=pages.find(p=>p.slug==='fitness-team');
 // Draft profile copy based on the team's listed roles, without unverified credentials.
@@ -96,8 +107,9 @@ const memberStories={
  }
 };
 for(const name of ['Gilbert','Justin'])memberStories[name.toLowerCase()]={motto:'Profile details coming soon.',specialties:['','',''],background:`Meet ${name}, a member of the Longevity Courtyard fitness team. More profile details will be added soon.`,highlight:'',quotes:[],message:''};
-memberStories.justin.motto='Intern at Longevity Courtyard';
-memberStories.justin.background='Justyn is an intern with the Longevity Courtyard fitness team.';
+memberStories.justin.motto='“Every small step towards staying active is a step towards a stronger tomorrow.”';
+memberStories.justin.specialties=['Active Living','Everyday Movement','Healthy Habits'];
+memberStories.justin.background='Justyn is a Sports Health Intern with the Longevity Courtyard fitness team and is currently pursuing a Diploma in Sports Health.';
 for(const member of memberProfiles){
  const page=JSON.parse(JSON.stringify(fitnessPage));
  Object.assign(page,{slug:member.slug,title:member.title,navSlug:'fitness-team'});
@@ -127,7 +139,7 @@ for(const member of memberProfiles){
  // Anchor the head at the top; crop only the lower body in the hero frame.
  const heroPortrait=findNode(page.root,'564:2566');
  if(heroPortrait?.image){heroPortrait.image.style.objectFit='cover';heroPortrait.image.style.objectPosition='center top';}
- if(['gilbert','justin'].includes(member.slug)){
+ if(member.slug==='gilbert'){
   const prune=node=>{node.children=node.children.filter(child=>child.id!=='564:2574'&&!(member.slug==='gilbert'&&child.id==='564:2570'));node.children.forEach(prune);};
   prune(page.root);
  }
@@ -136,10 +148,12 @@ for(const member of memberProfiles){
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return renderingPageSlug==='resources'?{equipment:text}:{href:'resources.html#section-688-984'};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
 // Remove retired quotes, personal messages and experience captions from profiles.
 for(const page of pages.filter(page=>['fitness-team','holistic-team',...memberProfiles.map(member=>member.slug)].includes(page.slug))){
- if(['karis','fitness-team','fion','justin'].includes(page.slug)){
-  const panel=findNode(page.root,'564:2593');
-  const lines=page.slug==='justin'
-   ? ['Justyn','Intern','Longevity Courtyard Fitness Team']
+ if(['karis','fitness-team','fion','justin','holistic-team'].includes(page.slug)){
+  const panel=findNode(page.root,page.slug==='holistic-team'?'564:2627':'564:2593');
+  const lines=page.slug==='holistic-team'
+   ? ['Titisa "Ice" Jeamsakul','Diploma in Dance (Pedagogy) – Nanyang Academy of Fine Arts (NAFA), Singapore','Bachelor of Arts in Contemporary Dance (First-Class Honours) – London Contemporary Dance School (LCDS), United Kingdom']
+   : page.slug==='justin'
+   ? ['Justyn','Currently pursuing Diploma in Sports Health']
    : page.slug==='fion'
    ? ['Soh Tiong Eng Fion','STPM','Gymtonic Certificate']
    : page.slug==='karis'
@@ -163,7 +177,7 @@ for(const member of memberProfiles){
   homeCoaches.children.push(card);
  }
  const [photo,name,role,message]=card.children;
- photo.image={...photo.image,src:member.image,alt:`Portrait of ${member.name}`,style:{objectFit:'cover',objectPosition:'center top',width:'145%',height:'145%',left:'-22.5%',top:'-8%',transform:'scaleX(-1)'}};
+ photo.image={...photo.image,src:member.image,alt:`Portrait of ${member.name}`,style:{objectFit:'cover',objectPosition:'center top',width:'145%',height:'145%',left:'-22.5%',top:'-8%',transform:['justin','gilbert'].includes(member.slug)?'none':'scaleX(-1)'}};
  for(const [node,text] of [[name,member.name],[role,member.role],[message,memberStories[member.slug].motto]])Object.assign(node,{text,name:text,lines:[text],w:270});
  name.href=`${member.slug}.html#coach-profile`;
 }
@@ -247,7 +261,7 @@ function render(n,depth=0,inLink=false){
    {name:'Soh Tiong Eng Fion',href:'fion.html#coach-profile',image:'assets/images/Fion.png'},
    {name:'Dawn',href:'dawn.html#coach-profile',image:'assets/images/Dawn.png'},
    {name:'Karis',href:'karis.html#coach-profile',image:'assets/images/Karis.png'},
-   {name:'Gilbert',href:'gilbert.html#coach-profile',image:'assets/images/member-placeholder.svg'},
+   {name:'Gilbert',href:'gilbert.html#coach-profile',image:'assets/images/Gilbert.png'},
    {name:'Justyn',href:'justin.html#coach-profile',image:'assets/images/Justin.png'}
   ];
   inner+=team.map((member,index)=>`<a class="design-node coach-standard-selector" style="left:${index*105}px;top:0;width:85px;height:85px;--mobile-order:${index}" data-coach-selector href="${member.href}" aria-label="View ${member.name}'s profile" title="${member.name}"><img class="coach-selector-photo" src="${member.image}" alt="" aria-hidden="true" decoding="async"></a>`).join('');
