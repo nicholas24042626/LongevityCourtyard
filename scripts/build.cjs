@@ -147,10 +147,14 @@ for(const member of memberProfiles){
 function action(text){text=text?.trim();if(equipmentLabels.includes(text))return renderingPageSlug==='resources'?{equipment:text}:{href:'resources.html#section-688-984'};if(text==='For Seniors')return{href:'index.html'};if(text==='For Anyone')return{href:'for-anyone.html'};if(links[text])return{href:links[text]};if(/^(Book a Trial Session|Contact Us|Contact us on|Contact Us on)/.test(text))return{href:whatsapp};if(['Privacy Policy','Terms of Service','Accessibility','Facebook','中文'].includes(text))return{dialog:text};return null;}
 // Remove retired quotes, personal messages and experience captions from profiles.
 for(const page of pages.filter(page=>['fitness-team','holistic-team',...memberProfiles.map(member=>member.slug)].includes(page.slug))){
- if(['karis','fitness-team','fion','justin','holistic-team'].includes(page.slug)){
+ if(['karis','fitness-team','fion','justin','holistic-team','dawn','emily'].includes(page.slug)){
   const panel=findNode(page.root,page.slug==='holistic-team'?'564:2627':'564:2593');
   const lines=page.slug==='holistic-team'
    ? ['Titisa "Ice" Jeamsakul','Diploma in Dance (Pedagogy) – Nanyang Academy of Fine Arts (NAFA), Singapore','Bachelor of Arts in Contemporary Dance (First-Class Honours) – London Contemporary Dance School (LCDS), United Kingdom']
+   : page.slug==='emily'
+   ? ['Ng Swee Gek Emily','Gym Tonic Training Certificate','Community Screener Certificate','Clinical Frailty Scale Training Certificate']
+   : page.slug==='dawn'
+   ? ['Dawn','Doctor of Medicine (M.D.)','Master of Science (M.Sc.), Public Health']
    : page.slug==='justin'
    ? ['Justyn','Currently pursuing Diploma in Sports Health']
    : page.slug==='fion'

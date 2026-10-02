@@ -675,3 +675,9 @@ Object.assign(window.LCChinese, {
   "Monday–Friday": "星期一至星期五",
   "8.30am–12pm1pm–5.30pm": "上午8:30至中午12:00；下午1:00至5:30"
 });
+Object.assign(window.LCChinese, {
+  "DawnDoctor of Medicine (M.D.)Master of Science (M.Sc.), Public Health": "Dawn\n医学博士（M.D.）\n公共卫生理学硕士（M.Sc.）"
+});
+Object.assign(window.LCChinese, {
+  "Ng Swee Gek EmilyGym Tonic Training CertificateCommunity Screener CertificateClinical Frailty Scale Training Certificate": "Ng Swee Gek Emily\nGym Tonic 培训证书\n社区筛查员证书\n临床衰弱量表培训证书"
+});
