@@ -579,8 +579,8 @@ body.is-zh .design-node:is(a,button):has(>.text-node){display:flex;align-items:c
 body.is-zh .design-node:is(a,button)>.text-node{position:static!important;left:auto!important;top:auto!important;width:auto!important;height:auto!important;margin:0;text-align:center!important;line-height:1.4!important;white-space:normal;min-width:0}
 body.is-zh .design-node:is(a,button):has(>.text-node)>.has-image{position:relative!important;left:auto!important;top:auto!important;flex-shrink:0}
 body.is-zh .approach-button{display:inline-flex;align-items:center;justify-content:center;text-align:center}
-body.is-zh .text-node{font-family:'Source Sans 3','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif!important;line-break:strict;word-break:normal;overflow-wrap:break-word;white-space:pre-line}
-body.is-zh :is(.shangri-la-approach,.anyone-process,.programme-assessment,.anyone-aspect-grid) :is(h2,h3,p){font-family:'Source Sans 3','Microsoft YaHei','PingFang SC',sans-serif!important;word-break:normal;line-break:strict}
+body.is-zh .text-node{font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif!important;line-break:strict;word-break:normal;overflow-wrap:break-word;white-space:pre-line}
+body.is-zh :is(.shangri-la-approach,.anyone-process,.programme-assessment,.anyone-aspect-grid) :is(h2,h3,p){font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif!important;word-break:normal;line-break:strict}
 body.is-zh .mobile-headline{font-family:'Microsoft YaHei','PingFang SC',sans-serif}
 body.is-zh[data-page="programmes"] [data-node="679:502"]::before{content:none}
 @media(min-width:900px){
@@ -1231,7 +1231,7 @@ body .site-page .contact-section h2.text-node{
 .coach-carousel-controls.viewport-carousel-controls[hidden]{display:none!important}
 body :is(button,.visit-button,.approach-button,.faq-button,.faq-topics a,dialog a,
  .design-node.layout-node:is(a,button)){
- border:1px solid var(--control-border)!important;
+ border:2px solid var(--control-border)!important;
 }
 body :is(.visit-button,.approach-button,.faq-button,dialog a,
  .design-node.layout-node:is(a,button)):not([data-coach-selector]){
@@ -1239,6 +1239,9 @@ body :is(.visit-button,.approach-button,.faq-button,dialog a,
 }
 body .photo-carousel-controls button{border-color:#fff!important}
 body .language-switch button{border-color:#002e56!important}
+/* Keep borders visible on white CTAs and gold carousel buttons. */
+body .site-page .approach-button[href="about.html"]{border-color:var(--control-border)!important}
+body .coach-carousel-controls button{border-color:#002e56!important}
 body .dialog-close{border-radius:50%;width:40px;height:40px;line-height:1}
 body .menu-toggle{border-radius:8px}
 body .site-footer button{border-radius:6px;padding:4px 8px}
@@ -1297,4 +1300,11 @@ body .site-footer button{border-radius:6px;padding:4px 8px}
  body .site-page>[data-node="595:581"]{display:none!important}
  .faq-layout{padding-block:24px}
  .plans-content{padding-block:24px}
+}
+
+/* Chinese typography takes precedence over English heading and component fonts. */
+html[lang="zh-Hans"] body.is-zh :is(.site-page,.site-header,dialog) *,
+html[lang="zh-Hans"] body.is-zh .site-page .contact-section h2.text-node,
+html[lang="zh-Hans"] body.is-zh #coach-profile *{
+ font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif!important;
 }
