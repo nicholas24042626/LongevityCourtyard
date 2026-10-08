@@ -106,13 +106,13 @@
 
   const dialog=document.querySelector('#information-dialog');let opener;
   const messages={
-    'Ng Swee Gek Emily':'<p>Emily’s coach description is not available yet.</p><p>Contact Longevity Courtyard to learn more about Emily and her sessions.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Ask about Emily</a>',
-    'Soh Tiong Eng Fion':'<p>Fion’s coach description is not available yet.</p><p>Contact Longevity Courtyard to learn more about Fion and her sessions.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Ask about Fion</a>',
-    'Dawn':'<p>Dawn’s coach description is not available yet.</p><p>Contact Longevity Courtyard to learn more about Dawn and her sessions.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Ask about Dawn</a>',
-    'Karis':'<p>Karis’s coach description is not available yet.</p><p>Contact Longevity Courtyard to learn more about Karis and her sessions.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Ask about Karis</a>',
+    'Ng Swee Gek Emily':'<p>Emilyâ€™s coach description is not available yet.</p><p>Contact Longevity Courtyard to learn more about Emily and her sessions.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Ask about Emily</a>',
+    'Soh Tiong Eng Fion':'<p>Fionâ€™s coach description is not available yet.</p><p>Contact Longevity Courtyard to learn more about Fion and her sessions.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Ask about Fion</a>',
+    'Dawn':'<p>Dawnâ€™s coach description is not available yet.</p><p>Contact Longevity Courtyard to learn more about Dawn and her sessions.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Ask about Dawn</a>',
+    'Karis':'<p>Karisâ€™s coach description is not available yet.</p><p>Contact Longevity Courtyard to learn more about Karis and her sessions.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Ask about Karis</a>',
     'Privacy Policy':'<p>Please contact Longevity Courtyard for its current privacy policy and questions about your personal information. This website does not use contact forms, analytics, or tracking cookies.</p><a href="tel:+6568591961">Call +65 6859 1961</a>',
     'Terms of Service':'<p>Please contact Longevity Courtyard to confirm current programme terms, prices, availability, and participation requirements before booking.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Contact Longevity Courtyard</a>',
-    'Accessibility':'<p>You can navigate this site using your keyboard, enlarge text with your browser’s zoom controls, and play or pause testimonial videos. For assistance with visiting the centre or joining a session, please call us.</p><a href="tel:+6568591961">Call +65 6859 1961</a>',
+    'Accessibility':'<p>You can navigate this site using your keyboard, enlarge text with your browserâ€™s zoom controls, and play or pause testimonial videos. For assistance with visiting the centre or joining a session, please call us.</p><a href="tel:+6568591961">Call +65 6859 1961</a>',
     'Facebook':'<p>Please contact the team for the official Longevity Courtyard Facebook page and the latest community updates.</p><a href="https://wa.me/6568591961" target="_blank" rel="noopener noreferrer">Contact the team</a>'
   };
   document.addEventListener('click',event=>{const button=event.target.closest('[data-dialog]');if(!button||button.closest('.language-switch'))return;opener=button;const title=button.dataset.dialog;document.querySelector('#dialog-title').textContent=title;document.querySelector('#dialog-content').innerHTML=messages[title]||'';dialog.showModal();document.body.classList.add('modal-open');setLanguage(document.documentElement.lang==='zh-Hans'?'zh':'en')});
@@ -183,7 +183,7 @@
     const progressHeading=document.querySelector('[data-node="683:814"]');
     if(progressHeading)progressHeading.textContent='How the Longevity Courtyard Sessions Progress';
     const progressList=document.querySelector('[data-node="683:841"]');
-    if(progressList)progressList.textContent='• Coach-led warm-up\n• HUR and functional exercise circuit\n• Balance, mobility, and cool-down';
+    if(progressList)progressList.textContent='â€¢ Coach-led warm-up\nâ€¢ HUR and functional exercise circuit\nâ€¢ Balance, mobility, and cool-down';
     const approach=document.createElement('section');
     approach.className='shangri-la-approach';
     approach.setAttribute('aria-labelledby','shangri-la-approach-title');
@@ -208,7 +208,7 @@
     assessment.setAttribute('aria-labelledby','programme-assessment-title');
     assessment.innerHTML=`<h2 id="programme-assessment-title">Pre- &amp; Post-Programme Assessment</h2>
       <p>See how your strength, balance and mobility improve over time. Shangri-La is structured programme with measurable outcomes, not simply a collection of exercise classes.</p>
-      <p>From our members' pre/post HUR SmartTouch assessments (Jan–Aug 2026). Across these exercises, strength (training load) improved by about 34% on average, ranging from +7% to +74%.</p>`;
+      <p>From our members' pre/post HUR SmartTouch assessments (Janâ€“Aug 2026). Across these exercises, strength (training load) improved by about 34% on average, ranging from +7% to +74%.</p>`;
     main.insertBefore(approach,sessionsSection);
     main.insertBefore(assessment,sessionsSection);
   }
@@ -246,7 +246,7 @@
     const fact=document.querySelector(seniors?'[data-node="669:1333"]':'[data-node="811:1641"]');
     const approach=document.querySelector(seniors?'[data-node="670:1398"]':'[data-node="811:1686"]');
     const notGym=document.querySelector(seniors?'[data-node="669:1363"]':'[data-node="811:1669"]');
-    if(fact)fact.innerHTML='<div class="fun-fact"><span>✦</span><p><strong>Fun Fact:</strong> According to Health Promotion Board (HPB) guidelines, seniors aged 65 and above should aim to accumulate 150-300 minutes of moderate-intensity aerobic activity per week. Older adults should also incorporate exercises targeting muscle strength, balance and flexibility at least 3 days a week.</p><span>✦</span></div>';
+    if(fact)fact.innerHTML='<div class="fun-fact"><span>âœ¦</span><p><strong>Fun Fact:</strong> According to Health Promotion Board (HPB) guidelines, seniors aged 65 and above should aim to accumulate 150-300 minutes of moderate-intensity aerobic activity per week. Older adults should also incorporate exercises targeting muscle strength, balance and flexibility at least 3 days a week.</p><span>âœ¦</span></div>';
     if(approach){
       approach.innerHTML='<p class="approach-eyebrow">-------- THE SHANGRI-LA PROGRAMME</p><h2><span>Shangri-La.</span> A guided 12-week journey, not a one-off class.</h2><p class="approach-summary">A personalised active-ageing programme designed to improve physical function, support recovery and enhance quality of life through guided exercise and wellness care. Shangri-La targets 8 aspects for a holistic approach to activeness and health.</p><div class="anyone-aspect-grid"><article><h3>Strength</h3><p>For muscle functionality and everyday strength.</p></article><article><h3>Balance</h3><p>For confident movement and independent living reducing the risk of falls.</p></article><article><h3>Stamina</h3><p>For sustained energy and greater endurance during daily activities.</p></article><article><h3>Flexibility &amp; Mobility</h3><p>For easier movement, better flexibility and improved joint mobility.</p></article><article class="assessment-card"><h3>Pre- &amp; Post-Programme Assessment</h3><p>Assessments before and after the programme to track participants progress, measure changes in physical function and better understand the outcomes of the programme.</p></article><article><h3>Medical Coaching</h3><p>For guided exercise support tailored to individual health and physical needs.</p></article><article><h3>Well-being</h3><p>For better overall wellness, confidence and quality of life.</p></article><article><h3>Nutrition</h3><p>For healthier eating habits that support strength, energy and recovery.</p></article><article><h3>Rest &amp; Sleep</h3><p>For improved recovery, better sleep quality and daily energy levels.</p></article></div><a class="approach-button" href="about.html">Learn more about Shangri-La</a>';
       if(notGym)notGym.parentElement.insertBefore(approach,notGym);
@@ -254,7 +254,7 @@
     }
     const process=document.createElement('section');
     process.className='anyone-process';
-    process.innerHTML='<p class="approach-eyebrow">-------- THE LONGEVITY COURTYARD PROCESS</p><div class="process-grid"><article><strong>Step 1</strong><h3>Book Trial Session</h3><p>Meet a coach and try the programme with no pressure to commit.</p></article><article><strong>Step 2</strong><h3>Health &amp; Functional Screening</h3><p>We assess strength, balance and mobility to build your baseline.</p></article><article><strong>Step 3</strong><h3>Personalised Programme</h3><p>A weekly plan of strength, stretch and coaching sessions, built around you.</p></article><article><strong>Step 4</strong><h3>Progress &amp; Graduation</h3><p>Regular reassessment, celebrated milestones, and a plan to keep going.</p></article></div><p class="process-footnote">*This is included for both Shangri-La and Longevity Courtyard Monthly Pass plans.</p><a class="approach-button" href="https://wa.me/6568591961">Book a Trial Session</a><em>Each session is 45 minutes with up to 10 participants.</em>';
+    process.innerHTML='<p class="approach-eyebrow">-------- THE LONGEVITY COURTYARD PROCESS</p><div class="process-grid"><article><strong>Step 1</strong><h3>Book Trial Session</h3><p>Meet a coach and try the programme with no pressure to commit.</p></article><article><strong>Step 2</strong><h3>Health &amp; Functional Screening</h3><p>We assess strength, balance and mobility to build your baseline.</p></article><article><strong>Step 3</strong><h3>Personalised Programme</h3><p>A weekly plan of strength, stretch and coaching sessions, built around you.</p></article><article><strong>Step 4</strong><h3>Progress &amp; Graduation</h3><p>Regular reassessment, celebrated milestones, and a plan to keep going.</p></article></div><p class="process-footnote">*This is included for both Shangri-La and Longevity Courtyard Monthly Pass plans.</p><div class="process-trial-row"><a class="approach-button" href="https://wa.me/6568591961">Book a Trial Session</a><em>Each session is 45 minutes with up to 10 participants.</em></div>';
     const nextSection=document.querySelector(seniors?'[data-node="758:1322"]':'[data-node="811:1711"]');
     if(nextSection)nextSection.parentElement.insertBefore(process,nextSection);
     const fitnessTeam=document.querySelector(seniors?'[data-node="670:1497"]':'[data-node="811:1748"]');
@@ -307,6 +307,27 @@
   });
   document.querySelectorAll('[data-coach-carousel]').forEach(carousel=>{
     const controls=document.querySelector(`[data-carousel-controls="${carousel.id}"]`);
+    // Keep the controls in viewport coordinates, outside the scaled page canvas.
+    document.body.append(controls);
+    controls.classList.add('viewport-carousel-controls');
+    const placeControls=()=>{
+      const rect=carousel.getBoundingClientRect();
+      const headerBottom=document.querySelector('.site-header').getBoundingClientRect().bottom;
+      const visible=rect.top<innerHeight-96&&rect.bottom>headerBottom+96;
+      controls.hidden=!visible;
+      if(!visible)return;
+      controls.style.setProperty('left',`${Math.max(16,Math.min(innerWidth-controls.offsetWidth-16,rect.right-controls.offsetWidth))}px`,'important');
+      controls.style.setProperty('top',`${Math.min(innerHeight-controls.offsetHeight-24,rect.bottom-controls.offsetHeight-12)}px`,'important');
+    };
+    let placementFrame;
+    const schedulePlacement=()=>{
+      if(placementFrame)return;
+      placementFrame=requestAnimationFrame(()=>{placementFrame=0;placeControls()});
+    };
+    window.addEventListener('scroll',schedulePlacement,{passive:true});
+    window.addEventListener('resize',schedulePlacement);
+    new ResizeObserver(schedulePlacement).observe(carousel);
+    placeControls();
     const previous=controls.querySelector('[data-carousel-direction="-1"]');
     const next=controls.querySelector('[data-carousel-direction="1"]');
     const update=()=>{previous.disabled=carousel.scrollLeft<=1;next.disabled=carousel.scrollLeft>=carousel.scrollWidth-carousel.clientWidth-1};

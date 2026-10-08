@@ -6,8 +6,6 @@
  [data-node="514:509"]{width:100%!important}[data-node="815:1969"]{min-height:260px}.layout-node:has(>[data-node="514:499"]),.layout-node:has(>[data-node="545:2268"]),.layout-node:has(>[data-node="545:2270"]){display:none}[data-node="513:418"]{order:99999}
 }
 
-body[data-page="for-anyone"] .site-page{height:10928px!important}
-body[data-page="index"] .site-page{height:10035px!important}
 body[data-page="for-anyone"] [data-node="811:1641"]{top:1024px!important;height:114px!important;background:#fbf7ee!important}
 body[data-page="for-anyone"] [data-node="811:1686"]{top:2000px!important;height:1600px!important;padding:96px 103px!important;background:linear-gradient(135deg,#003b68 0%,#075f91 100%)!important;color:#fff!important}
 body[data-page="for-anyone"] [data-node="811:1669"]{top:1138px!important;height:862px!important;padding:0!important;background:radial-gradient(ellipse at 34% 50%,rgba(247,239,226,1) 0%,rgba(250,231,201,1) 100%)!important}
@@ -43,6 +41,9 @@ body[data-page="for-anyone"] [data-node="811:1669"]>.approach-eyebrow{margin-bot
 .process-grid h3{margin:0 0 28px;font-family:'Source Serif Pro',serif;font-size:28px;line-height:1.2}
 .process-grid p{margin:0;font-size:21px;line-height:1.45}
 .process-footnote{margin:14px 0 0 auto;max-width:650px;font-size:16px;font-style:italic;font-weight:700}
+.process-trial-row{display:flex;align-items:center;flex-wrap:wrap;gap:16px 24px;margin-top:42px}
+.process-trial-row .approach-button{margin:0!important;flex:0 0 auto}
+.process-trial-row em{flex:1 1 360px;font-size:16px;line-height:1.5}
 body[data-page="for-anyone"] .anyone-process>h2{margin:0 0 30px;font-family:'Source Serif Pro',serif;font-size:48px;line-height:1.2}
 body[data-page="for-anyone"] .anyone-process>em{margin-left:14px;font-size:16px;font-weight:700}
 @media(max-width:899px){
@@ -250,7 +251,6 @@ body[data-page="programmes"] [data-node="679:513"]::after{
  }
 }
 
-body[data-page="programmes"] .site-page{height:7539px!important}
 body[data-page="programmes"] #section-679-509{display:none}
 body[data-page="programmes"] [data-node="757:1281"]{width:1100px!important;height:80px!important;font-size:64px!important;line-height:80px!important}
 body[data-page="programmes"] [data-node="757:1282"]{width:1100px!important;height:136px!important;font-size:24px!important;line-height:34px!important}
@@ -921,14 +921,6 @@ body.is-zh .process-grid strong{margin-bottom:14px}
  body.is-zh :is(.anyone-aspect-grid article,.process-grid article,.approach-grid article){padding:18px 20px}
  body.is-zh .site-page :is(.approach-eyebrow,.approach-intro,.approach-summary){margin-bottom:16px}
 }
-/* Move the desktop programme block between equipment and the fitness team. */
-@media(min-width:900px){
- body:not(.is-zh):is([data-page="index"],[data-page="for-anyone"]) .anyone-process{top:2000px!important}
- body:not(.is-zh)[data-page="index"] [data-node="758:1322"],
- body:not(.is-zh)[data-page="for-anyone"] [data-node="811:1711"]{top:3040px!important}
- body:not(.is-zh)[data-page="index"] [data-node="670:1398"],
- body:not(.is-zh)[data-page="for-anyone"] [data-node="811:1686"]{top:4131px!important}
-}
 /* Cream programme cards separate clearly from the blue section background. */
 .anyone-aspect-grid article{
  background:#fbf7ee;
@@ -1204,7 +1196,7 @@ body .site-footer [data-node="537:542"]>.layout-node{display:flex;flex-direction
 body .site-footer .text-node{font-size:18px!important;line-height:1.45!important;white-space:normal}
 body .site-footer .text-line{white-space:normal;display:block}
 body .site-footer :is([data-node="537:544"],[data-node="537:547"],[data-node="537:553"],[data-node="537:562"],[data-node="537:557"]){font-size:24px!important;margin-bottom:4px}
-body .site-footer [data-node="537:535"]{order:1;font-size:14px!important;align-self:center}
+body .site-footer [data-node="537:535"]{order:1;font-size:14px!important;align-self:center;justify-self:start;text-align:left!important}
 body .site-footer [data-node="537:536"]{order:2;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
 body .site-footer [data-node="537:536"] .text-node{font-size:14px!important}
 body .site-footer :is([data-node="537:541"],[data-node="537:559"],[data-node="537:560"]){display:none!important}
@@ -1222,4 +1214,87 @@ body .site-page .site-footer .footer-faq{color:#fff!important;-webkit-text-fill-
  body .site-footer [data-node="537:542"] :is(a,button){min-height:36px;display:flex;align-items:center}
  body .site-footer [data-node="537:536"]{gap:4px 16px}
  body .site-footer [data-node="537:536"] :is(a,button){min-height:44px}
+}
+
+/* Shared trial invitation uses the site's Source Sans family. */
+body .site-page .contact-section h2.text-node{
+ font-family:'Source Sans 3','Microsoft YaHei','PingFang SC',sans-serif!important;
+}
+
+/* Shared control treatment, including generated CTAs and carousel controls. */
+:root{--control-border:#c89b4a;--section-space:48px}
+.coach-carousel-controls.viewport-carousel-controls{
+ position:fixed;z-index:90;zoom:1;padding:8px;gap:12px;
+ border:1px solid #dfd2b4;border-radius:40px;background:#fbf7ee;
+ box-shadow:0 3px 12px #002e5626;
+}
+.coach-carousel-controls.viewport-carousel-controls[hidden]{display:none!important}
+body :is(button,.visit-button,.approach-button,.faq-button,.faq-topics a,dialog a,
+ .design-node.layout-node:is(a,button)){
+ border:1px solid var(--control-border)!important;
+}
+body :is(.visit-button,.approach-button,.faq-button,dialog a,
+ .design-node.layout-node:is(a,button)):not([data-coach-selector]){
+ border-radius:30px!important;
+}
+body .photo-carousel-controls button{border-color:#fff!important}
+body .language-switch button{border-color:#002e56!important}
+body .dialog-close{border-radius:50%;width:40px;height:40px;line-height:1}
+body .menu-toggle{border-radius:8px}
+body .site-footer button{border-radius:6px;padding:4px 8px}
+
+/* Stack section blocks instead of preserving gaps in the source canvas. */
+@media(min-width:900px){
+ body .site-page{height:auto!important;display:block}
+ body .site-page>:is(.section,.anyone-process,.shangri-la-approach,.programme-assessment){
+  position:relative!important;top:auto!important;left:auto!important;margin-block:0!important;
+ }
+ /* This reassurance strip overlays the homepage hero boundary. */
+ body[data-page="index"] .site-page>.section[data-node="668:1332"]{position:absolute!important;top:1024px!important;z-index:1}
+ body .site-page>:is(.anyone-process,.shangri-la-approach,.programme-assessment){
+  height:auto!important;min-height:0!important;padding-block:var(--section-space)!important;
+ }
+ body:is([data-page="index"],[data-page="for-anyone"]) .site-page>.anyone-process{
+  height:auto!important;min-height:0!important;padding-block:48px!important;
+ }
+ body:is([data-page="index"],[data-page="for-anyone"]) .site-page>:is([data-node="670:1398"],[data-node="811:1686"]){
+  height:auto!important;padding-block:var(--section-space)!important;
+ }
+ body .site-page>.contact-section{height:560px!important}
+ body .site-page>[data-node="669:1363"],body .site-page>[data-node="811:1669"]{height:800px!important}
+ body .site-page>[data-node="758:1322"],body .site-page>[data-node="811:1711"]{height:1020px!important}
+ body .site-page>[data-node="811:1649"]{height:730px!important}
+ /* Leave 48px below the team CTA before the next section begins. */
+ body .site-page>:is([data-node="670:1497"],[data-node="811:1748"]){height:1176px!important}
+ body .site-page>[data-node="404:484"],body .site-page>[data-node="811:1780"]{height:1020px!important}
+ body .site-page>[data-node="811:1797"]{height:855px!important}
+ body .site-page>[data-node="677:1723"]{height:710px!important}
+ body .site-page>[data-node="677:1769"]{height:850px!important}
+ body .site-page>[data-node="593:529"]{height:750px!important}
+ body .site-page>[data-node="428:164"]{height:425px!important}
+ body .site-page>[data-node="757:1279"]{height:650px!important}
+ body .site-page>[data-node="683:737"]{height:690px!important}
+ body .site-page>[data-node="683:812"]{height:995px!important}
+ body .site-page>[data-node="679:539"]{height:875px!important}
+ body .site-page>[data-node="688:1049"]{height:1295px!important}
+ body .site-page>[data-node="688:1083"]{height:775px!important}
+ body .site-page>[data-node="591:513"]{height:600px!important}
+ body .site-page>[data-node="595:581"]{display:none!important}
+ body .site-page>[data-node="510:348"]{height:610px!important}
+ .faq-hero{padding-block:48px}
+ .faq-layout{padding-block:48px;gap:48px}
+ .plans-content{padding-block:48px}
+}
+@media(max-width:899px){
+ :root{--section-space:24px}
+ .process-trial-row{margin-top:24px;gap:16px}
+ body .site-page>.section:not(:first-child):not(.site-footer):not(#coach-profile),
+ body .site-page>:is(.anyone-process,.shangri-la-approach,.programme-assessment){
+  padding-block:var(--section-space)!important;gap:16px;margin-block:0!important;
+ }
+ body .site-page>.contact-section{min-height:0!important}
+ body .site-page>.section:not(:first-child):not(.site-footer):not(#coach-profile):is([data-node="670:1497"],[data-node="811:1748"]){padding-bottom:48px!important}
+ body .site-page>[data-node="595:581"]{display:none!important}
+ .faq-layout{padding-block:24px}
+ .plans-content{padding-block:24px}
 }
