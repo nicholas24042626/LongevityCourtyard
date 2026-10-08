@@ -1163,6 +1163,17 @@ body[data-page="faq"] .site-footer{position:relative!important;top:auto!importan
 .faq-answer{padding:0 24px 24px;font-size:18px;line-height:1.65}
 .faq-answer p{margin:0}
 .faq-answer a{display:inline-block;margin-top:12px;text-decoration:underline;text-underline-offset:4px;font-weight:600}
+/* FAQ answer links use the same plain treatment, including WhatsApp links. */
+body[data-page="faq"] .site-page .faq-answer a,
+body[data-page="faq"] .site-page .faq-answer a:hover{
+ background:transparent!important;color:#002e56!important;
+ --mobile-ink:#002e56;border-color:transparent!important;
+}
+body[data-page="faq"] .site-page .faq-help .faq-button,
+body[data-page="faq"] .site-page .faq-help .faq-button:hover{
+ background:#002e56!important;color:#fff!important;--mobile-ink:#fff;
+ border-color:#c89b4a!important;
+}
 .faq-help{position:sticky;top:112px;background:#eaeefa;padding:30px;border-radius:24px;color:#002e56}
 .faq-help-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#6073be;color:white;font-family:'Source Serif Pro',serif;font-size:30px;margin-bottom:24px}
 .faq-help p{font-size:18px;line-height:1.55}
