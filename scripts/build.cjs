@@ -42,6 +42,11 @@ function syncSeniorsTeamSection(){
  Object.assign(target,synced,{id,x,y});
 }
 syncSeniorsTeamSection();
+// Keep the shared footer label consistent across every generated page.
+for(const page of pages){
+ const rename=node=>{if(node.text?.trim()==='Resources')Object.assign(node,{text:'Equipment',name:'Equipment',lines:['Equipment']});(node.children||[]).forEach(rename);};
+ rename(page.root);
+}
 for(const page of pages){
  for(const id of ['668:633','811:1640']){
   const badge=findNode(page.root,id);

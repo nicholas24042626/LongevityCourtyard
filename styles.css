@@ -562,7 +562,7 @@ body.is-zh .text-node {
   white-space: normal;
 }
 
-html[lang="zh-Hans"] body{font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif}
+html[lang="zh-Hans"] body{font-family:'Source Sans 3','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif}
 body.is-zh :is([data-node="688:1045"],[data-node="688:987"],.approach-summary){white-space:pre-line;height:auto}
 @media(min-width:900px){
  body.is-zh[data-page="resources"] .site-page{display:flex;flex-direction:column;height:auto}
@@ -579,8 +579,8 @@ body.is-zh .design-node:is(a,button):has(>.text-node){display:flex;align-items:c
 body.is-zh .design-node:is(a,button)>.text-node{position:static!important;left:auto!important;top:auto!important;width:auto!important;height:auto!important;margin:0;text-align:center!important;line-height:1.4!important;white-space:normal;min-width:0}
 body.is-zh .design-node:is(a,button):has(>.text-node)>.has-image{position:relative!important;left:auto!important;top:auto!important;flex-shrink:0}
 body.is-zh .approach-button{display:inline-flex;align-items:center;justify-content:center;text-align:center}
-body.is-zh .text-node{font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif!important;line-break:strict;word-break:normal;overflow-wrap:break-word;white-space:pre-line}
-body.is-zh :is(.shangri-la-approach,.anyone-process,.programme-assessment,.anyone-aspect-grid) :is(h2,h3,p){font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif!important;word-break:normal;line-break:strict}
+body.is-zh .text-node{font-family:'Source Sans 3','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif!important;line-break:strict;word-break:normal;overflow-wrap:break-word;white-space:pre-line}
+body.is-zh :is(.shangri-la-approach,.anyone-process,.programme-assessment,.anyone-aspect-grid) :is(h2,h3,p){font-family:'Source Sans 3','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif!important;word-break:normal;line-break:strict}
 body.is-zh .mobile-headline{font-family:'Microsoft YaHei','PingFang SC',sans-serif}
 body.is-zh[data-page="programmes"] [data-node="679:502"]::before{content:none}
 @media(min-width:900px){
@@ -1317,5 +1317,59 @@ body .site-footer button{border-radius:6px;padding:4px 8px}
 html[lang="zh-Hans"] body.is-zh :is(.site-page,.site-header,dialog) *,
 html[lang="zh-Hans"] body.is-zh .site-page .contact-section h2.text-node,
 html[lang="zh-Hans"] body.is-zh #coach-profile *{
- font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif!important;
+ font-family:'Source Sans 3','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif!important;
+}
+
+/* Use the same spacing rhythm in either language; allow translated text to wrap. */
+:root{--block-space:24px;--card-space:24px}
+body :is(.anyone-aspect-grid,.process-grid,.approach-grid){gap:var(--card-space)}
+body :is(.anyone-aspect-grid,.process-grid,.approach-grid) article{padding:24px}
+body :is(.anyone-aspect-grid,.process-grid,.approach-grid) h3{margin-bottom:16px}
+body.is-zh :is(.anyone-aspect-grid,.process-grid,.approach-grid) h3{margin-bottom:16px}
+/* Latin glyphs use the English family; Chinese glyphs use the CJK fallback. */
+html[lang="zh-Hans"] body.is-zh :is(h1,h2,h3,.mobile-headline,.story-video-selector strong),
+html[lang="zh-Hans"] body.is-zh .site-page :is(h1,h2,h3).text-node{
+ font-family:'Source Serif Pro','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',serif!important;
+}
+html[lang="zh-Hans"] .language-switch [lang="en"]{font-family:'Source Sans 3',sans-serif!important}
+.language-switch [lang="zh"]{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif!important}
+@media(min-width:900px){
+ body[data-page="programmes"] .site-page>[data-node="757:1279"]{height:auto!important;min-height:0;padding:64px 156px 48px;display:flex;flex-direction:column;gap:24px}
+ body[data-page="programmes"] [data-node="757:1279"]>:is([data-node="757:1281"],[data-node="757:1282"],.programme-kicker){position:relative!important;inset:auto!important;width:100%!important;height:auto!important;margin:0!important}
+}
+@media(max-width:899px){
+ body.is-zh .site-page>.section:not(:first-child):not(.site-footer):not(#coach-profile){padding-block:var(--section-space)!important;gap:16px}
+ body[data-page="programmes"] [data-node="757:1279"]{gap:24px!important}
+}
+/* Explicit reading order also overrides the source canvas's flex ordering. */
+body[data-page="programmes"] [data-node="757:1281"]{order:0}
+body[data-page="programmes"] .programme-kicker{order:1}
+body[data-page="programmes"] [data-node="757:1282"]{order:2}
+html[lang="zh-Hans"] body[data-page="programmes"] [data-node="757:1281"]::after{font-family:'Source Serif Pro','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif}
+/* Keep course details in reading order with content-driven spacing. */
+body[data-page="programmes"] .site-page>[data-node="683:812"]{
+ height:auto!important;min-height:0!important;padding:48px 100px!important;
+ display:flex;flex-direction:column;gap:24px;
+}
+body[data-page="programmes"] [data-node="683:812"]>:is(.text-node,[data-node="683:842"]){
+ position:relative!important;inset:auto!important;width:100%!important;height:auto!important;margin:0!important;
+}
+body[data-page="programmes"] [data-node="684:874"]{order:0}
+body[data-page="programmes"] [data-node="683:814"]{order:1;line-height:1.25!important}
+body[data-page="programmes"] [data-node="683:815"]{order:2}
+body[data-page="programmes"] [data-node="683:841"]{order:3;line-height:1.6!important}
+body[data-page="programmes"] [data-node="683:842"]{order:4;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px!important;margin-top:8px!important}
+body[data-page="programmes"] [data-node="683:842"]>.design-node{
+ position:relative!important;inset:auto!important;width:auto!important;height:auto!important;min-height:0;
+ display:flex;flex-direction:column;gap:16px;padding:24px!important;
+}
+body[data-page="programmes"] [data-node="683:842"] .text-node{position:relative!important;inset:auto!important;width:auto!important;height:auto!important;margin:0!important}
+body[data-page="programmes"] [data-node="683:842"] .timeline-week{display:block!important;order:-1;font-size:22px!important;font-weight:700;color:#78551c!important}
+body[data-page="programmes"] :is([data-node="683:845"],[data-node="683:849"],[data-node="683:853"],[data-node="806:1354"]){display:none!important}
+body[data-page="programmes"] [data-node="683:812"]::after{display:none}
+body[data-page="programmes"] .programme-assessment p{margin:0 0 24px;line-height:1.6}
+body[data-page="programmes"] .programme-assessment p:last-child{margin-bottom:0}
+@media(max-width:899px){
+ body[data-page="programmes"] .site-page>[data-node="683:812"]{padding:24px 20px!important;gap:20px}
+ body[data-page="programmes"] [data-node="683:842"]{display:flex!important;flex-direction:column;gap:20px!important}
 }
