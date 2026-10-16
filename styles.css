@@ -1334,7 +1334,7 @@ html[lang="zh-Hans"] body.is-zh .site-page :is(h1,h2,h3).text-node{
 html[lang="zh-Hans"] .language-switch [lang="en"]{font-family:'Source Sans 3',sans-serif!important}
 .language-switch [lang="zh"]{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif!important}
 @media(min-width:900px){
- body[data-page="programmes"] .site-page>[data-node="757:1279"]{height:auto!important;min-height:0;padding:64px 156px 48px;display:flex;flex-direction:column;gap:24px}
+ body[data-page="programmes"] .site-page>[data-node="757:1279"]{height:auto!important;min-height:0;padding:64px 100px 48px;display:flex;flex-direction:column;gap:24px}
  body[data-page="programmes"] [data-node="757:1279"]>:is([data-node="757:1281"],[data-node="757:1282"],.programme-kicker){position:relative!important;inset:auto!important;width:100%!important;height:auto!important;margin:0!important}
 }
 @media(max-width:899px){
