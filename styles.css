@@ -1393,3 +1393,9 @@ body .site-page :is([data-node="669:1365"],[data-node="811:1671"]){
  width:max-content!important;max-width:100%;height:auto!important;
  white-space:nowrap!important;overflow:visible!important;
 }
+
+/* Let section labels display their complete text. */
+body .site-page :is([data-node="669:1339"],[data-node="670:1404"],[data-node="670:1499"],[data-node="811:1651"],[data-node="670:1566"],[data-node="673:1610"],[data-node="811:1687"],[data-node="811:1750"],[data-node="811:1784"],[data-node="811:1799"],[data-node="684:874"],[data-node="679:540"],[data-node="688:1044"],[data-node="788:2592"],[data-node="688:1062"],[data-node="688:1098"],[data-node="677:1770"]){
+ width:max-content!important;max-width:100%;height:auto!important;
+ white-space:normal!important;overflow:visible!important;
+}
