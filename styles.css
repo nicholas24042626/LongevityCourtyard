@@ -1387,3 +1387,9 @@ body[data-page="programmes"] .programme-assessment p:last-child{margin-bottom:0}
  body .site-page>:is([data-node="669:1363"],[data-node="811:1669"]){height:737px!important}
  body .site-page>:is([data-node="669:1363"],[data-node="811:1669"])>.design-node{translate:0 -63px}
 }
+
+/* Keep the complete Who We Are eyebrow on one line. */
+body .site-page :is([data-node="669:1365"],[data-node="811:1671"]){
+ width:max-content!important;max-width:100%;height:auto!important;
+ white-space:nowrap!important;overflow:visible!important;
+}
