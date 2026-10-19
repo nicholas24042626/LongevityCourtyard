@@ -1381,3 +1381,9 @@ body[data-page="programmes"] .programme-assessment p:last-child{margin-bottom:0}
 @media(max-width:899px){
  body .site-page .contact-section a[data-node="676:1681"]{align-self:center!important;margin-inline:auto!important}
 }
+
+/* Match the Who We Are section's top and bottom breathing room. */
+@media(min-width:900px){
+ body .site-page>:is([data-node="669:1363"],[data-node="811:1669"]){height:737px!important}
+ body .site-page>:is([data-node="669:1363"],[data-node="811:1669"])>.design-node{translate:0 -63px}
+}
