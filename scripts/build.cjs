@@ -273,7 +273,7 @@ function render(n,depth=0,inLink=false){
    {name:'Justyn',href:'justin.html#coach-profile',image:'assets/images/Justin.png'}
   ];
   inner+=team.map((member,index)=>`<a class="design-node coach-standard-selector" style="left:${index*105}px;top:0;width:85px;height:85px;--mobile-order:${index}" data-coach-selector href="${member.href}" aria-label="View ${member.name}'s profile" title="${member.name}"><img class="coach-selector-photo" src="${member.image}" alt="" aria-hidden="true" decoding="async"></a>`).join('');
- }else inner+=n.children.map(c=>render(c,depth+1,inLink||!!act)).join('');
+ }else inner+=n.children.map(c=>render(c,depth+1,inLink||!!act)+(n.id==='537:546'&&c.text==='Programmes'?'<a class="design-node text-node footer-plans" href="plans.html" style="--mobile-order:12200;color:#fff;text-decoration:underline">Plans</a>':'')).join('');
  if(n.id==='537:546')inner+='<a class="design-node text-node footer-faq" href="faq.html" style="--mobile-order:32000">FAQ</a>';
  if(n.id==='823:2477')inner+='<h1 class="mobile-headline">Stay Strong for the <em>Moments</em> that Matter.</h1>';
  if(n.id==='823:2483')inner+='<h1 class="mobile-headline">Strength belongs to <em>You.</em><br>Maintain Strength<br>Choose Yourself</h1>';

@@ -1373,3 +1373,11 @@ body[data-page="programmes"] .programme-assessment p:last-child{margin-bottom:0}
  body[data-page="programmes"] .site-page>[data-node="683:812"]{padding:24px 20px!important;gap:20px}
  body[data-page="programmes"] [data-node="683:842"]{display:flex!important;flex-direction:column;gap:20px!important}
 }
+
+/* Center the shared WhatsApp CTA within its invitation. */
+@media(min-width:900px){
+ body .site-page .contact-section [data-node="676:1681"]{left:50%!important;transform:translate(-50%,-24px)}
+}
+@media(max-width:899px){
+ body .site-page .contact-section a[data-node="676:1681"]{align-self:center!important;margin-inline:auto!important}
+}
